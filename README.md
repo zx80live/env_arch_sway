@@ -33,3 +33,11 @@ nvme1n1     259:5    0 465.8G  0 disk
 └─nvme1n1p4 259:9    0     2G  0 part   [SWAP]     [F]
 
 ```
+
+## Install Arch
+### Change console font
+```
+```
+
+### Drivers
+#### Nvidia
