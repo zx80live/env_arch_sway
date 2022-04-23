@@ -38,6 +38,9 @@ nvme1n1     259:5    0 465.8G  0 disk
 ### Change console font
 ```
 ```
+### Network
+```
+```
 
 ### Drivers
 #### Nvidia
