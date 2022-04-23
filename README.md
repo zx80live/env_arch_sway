@@ -1,6 +1,11 @@
 # env_arch_sway
 Guide to setup environment based on Arch Linux and Swaywm 
 
+## Write iso to usb
+```
+sudo dd bs=4M if=./archlinux.iso of=/dev/sda status=progress oflag=sync
+```
+
 ## Hardware
 ```
 ThinkPad P53
