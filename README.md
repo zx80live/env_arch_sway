@@ -25,7 +25,7 @@ Memory: 3420MiB / 39762MiB
 ```
 
 ### Partitions (dualboot)
-Use one of tools: `fdisk` `cfdisk` `gparted`
+Tools: `fdisk` `cfdisk` `gparted`
 ```
 nvme0n1     259:0    0 238.5G  0 disk 
 ├─nvme0n1p1 259:1    0   260M  0 part  [EFI]
