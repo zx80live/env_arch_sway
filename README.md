@@ -1,6 +1,23 @@
 # env_arch_sway
 Guide to setup environment based on Arch Linux and Swaywm 
 
+- [env_arch_sway](#env-arch-sway)
+  * [Write iso to usb](#write-iso-to-usb)
+  * [Hardware](#hardware)
+  * [Install Arch](#install-arch)
+    + [Change console font](#change-console-font)
+    + [Network](#network)
+    + [Partitions (dualboot)](#partitions--dualboot-)
+    + [Drivers](#drivers)
+      - [Nvidia](#nvidia)
+  * [Install Swaywm](#install-swaywm)
+  * [Utils](#utils)
+    + [Disk utilities](#disk-utilities)
+        * [Show storages and partitions](#show-storages-and-partitions)
+        * [Remove unused EFI entries](#remove-unused-efi-entries)
+    + [Backup](#backup)
+
+
 ## Write iso to usb
 ```
 sudo dd bs=4M if=./archlinux.iso of=/dev/sda status=progress oflag=sync
