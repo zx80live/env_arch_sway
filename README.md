@@ -59,10 +59,10 @@ nvme1n1     259:5    0 465.8G  0 disk
 ## Install Swaywm
 
 ## Utils
-### Show storages and partitions
+##### Show storages and partitions
 `lsblk` `fdisk -l`
 
-### Remove unused EFI entries
+##### Remove unused EFI entries
 ```
 # show EFI entries
 sudo efibootmgr -v
