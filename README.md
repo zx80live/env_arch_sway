@@ -59,6 +59,7 @@ nvme1n1     259:5    0 465.8G  0 disk
 ## Install Swaywm
 
 ## Utils
+### Disk utilities
 ##### Show storages and partitions
 `lsblk` `fdisk -l`
 
