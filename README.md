@@ -45,3 +45,19 @@ nvme1n1     259:5    0 465.8G  0 disk
 #### Nvidia
 
 ## Install Swaywm
+
+## Utils
+### Remove unused EFI entries
+```
+# show EFI entries
+sudo efibootmgr -v
+
+Boot0000* Windows Boot Manager
+Boot0001* Linux-Firmware-Updater
+Boot0002  Setup
+Boot0003  ubuntu                  <-- need to be removed
+...
+
+# remove ubuntu EFI entry
+sudo efibootmgr -b 3 -B
+```
