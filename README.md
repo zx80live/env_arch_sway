@@ -18,8 +18,20 @@ Memory: 3420MiB / 39762MiB
 
 ## Install Arch
 ### Change console font
+Temporary:
 ```
+setfont /usr/share/consolefonts/Lat7-Terminus28x14.psf
 ```
+Const:
+```
+sudo vim /etc/default/console-setup
+
+CHARMAP="UTF-8"
+CODESET="Lat7"
+FONTFACE="Terminus"
+FONTSIZE="28x14"
+```
+
 ### Network
 ```
 ```
