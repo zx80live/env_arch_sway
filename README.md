@@ -1,7 +1,6 @@
 # env_arch_sway
 Guide to setup environment based on Arch Linux and Swaywm 
 
-- [env_arch_sway](#env-arch-sway)
   * [Write iso to usb](#write-iso-to-usb)
   * [Hardware](#hardware)
   * [Install Arch](#install-arch)
