@@ -77,3 +77,6 @@ Boot0003  ubuntu                  <-- need to be removed
 # remove ubuntu EFI entry
 sudo efibootmgr -b 3 -B
 ```
+
+### Backup
+
