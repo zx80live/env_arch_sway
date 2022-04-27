@@ -50,6 +50,13 @@ FONTSIZE="28x14"
 
 ### Network
 ```
+iwctl
+device list  # => wlan0
+station wlan0 scan
+station wlan0 get-networks
+exit
+
+iwctl --passphrase passphrase station device connect SSID
 ```
 
 ### Partitions (dualboot)
