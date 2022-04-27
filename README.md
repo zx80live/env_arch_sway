@@ -36,7 +36,7 @@ Memory: 3420MiB / 39762MiB
 ### Change console font
 Temporary:
 ```
-setfont /usr/share/consolefonts/Lat7-Terminus28x14.psf
+setfont /usr/share/kbd/consolefonts/ter-u22n.psf.gz
 ```
 Const:
 ```
