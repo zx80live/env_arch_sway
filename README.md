@@ -77,7 +77,13 @@ nvme1n1     259:5    0 465.8G  0 disk
 ## Configure
 ### Network
 ```
-hostnamectl set-hostname <name>
+hostnamectl set-hostname <hostname>
+```
+```
+/etc/hosts
+127.0.0.1        localhost
+::1              localhost
+127.0.1.1        <hostname>
 ```
 
 ### Drivers
