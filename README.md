@@ -50,11 +50,9 @@ FONTSIZE="28x14"
 
 ### Network
 ```
-iwctl
-device list  # => wlan0
-station wlan0 scan
-station wlan0 get-networks
-exit
+iwctl device list                                               # => wlan0
+iwctl station wlan0 scan
+iwctl station wlan0 get-networks
 
 iwctl --passphrase passphrase station device connect SSID
 ```
