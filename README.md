@@ -33,12 +33,12 @@ Memory: 3420MiB / 39762MiB
 ```
 
 ## Install Arch
-### Change console font
+#### Change console font
 ```
 setfont /usr/share/kbd/consolefonts/ter-u22n.psf.gz
 ```
 
-### Network
+#### Network
 ```
 iwctl => exit
 iwctl device list                                               # => wlan0
