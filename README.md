@@ -34,7 +34,6 @@ Memory: 3420MiB / 39762MiB
 
 ## Install Arch
 ### Change console font
-Temporary:
 ```
 setfont /usr/share/kbd/consolefonts/ter-u22n.psf.gz
 ```
