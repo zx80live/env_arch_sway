@@ -74,6 +74,11 @@ nvme1n1     259:5    0 465.8G  0 disk
 └─nvme1n1p3 259:8    0   7.8G  0 part  [SWAP]       [F]
 ```
 
+## Configure
+### Network
+```
+hostnamectl set-hostname <name>
+```
 
 ### Drivers
 #### Nvidia
