@@ -38,15 +38,6 @@ Temporary:
 ```
 setfont /usr/share/kbd/consolefonts/ter-u22n.psf.gz
 ```
-Const:
-```
-sudo vim /etc/default/console-setup
-
-CHARMAP="UTF-8"
-CODESET="Lat7"
-FONTFACE="Terminus"
-FONTSIZE="28x14"
-```
 
 ### Network
 ```
