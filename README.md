@@ -50,6 +50,7 @@ FONTSIZE="28x14"
 
 ### Network
 ```
+iwctl => exit
 iwctl device list                                               # => wlan0
 iwctl station wlan0 scan
 iwctl station wlan0 get-networks
