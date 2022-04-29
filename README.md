@@ -124,12 +124,15 @@ vim /etc/locale.gen
 locale-gen
 ```
 
-### Network
+#### Network
 ```
-hostnamectl set-hostname <hostname>
+/etc/hostname
+
+<hostname>
 ```
 ```
 /etc/hosts
+
 127.0.0.1        localhost
 ::1              localhost
 127.0.1.1        <hostname>
