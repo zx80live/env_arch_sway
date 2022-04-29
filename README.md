@@ -111,6 +111,14 @@ FONTFACE="Terminus"
 FONTSIZE="28x14"
 ```
 
+#### Timezone
+```
+ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+```
+```
+hwclock --systohc
+```
+
 ### Network
 ```
 hostnamectl set-hostname <hostname>
