@@ -93,8 +93,22 @@ arch-chroot /mnt
 ```
 #### Install packages
 ```
-packman -Syyuu
-packman -S vim iwd dhcpcd sudo
+pacman -Syyuu
+pacman -S vim iwd dhcpcd sudo 
+```
+
+#### Console font
+```
+pacman -S terminus-font
+setfont /usr/share/kbd/consolefonts/ter-u22n.psf.gz
+```
+```
+/etc/vconsole.conf
+
+CHARMAP="UTF-8"
+CODESET="Lat7"
+FONTFACE="Terminus"
+FONTSIZE="28x14"
 ```
 
 ### Network
