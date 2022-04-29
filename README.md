@@ -124,7 +124,7 @@ locale-gen
 localectl set-locale en_US.UTF-8
 ```
 
-#### ⚠️ Network
+#### Network
 ```
 /etc/hostname
 
@@ -137,6 +137,17 @@ localectl set-locale en_US.UTF-8
 ::1              localhost
 127.0.1.1        <hostname>
 ```
+```
+iwctl device list                                               # => wlan0
+iwctl station wlan0 scan
+iwctl station wlan0 get-networks
+
+iwctl --passphrase <passphrase> station wlan9 connect <SSID>
+```
+```
+sudo dhcpd
+```
+
 
 #### Users
 ```
