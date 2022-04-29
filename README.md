@@ -47,6 +47,11 @@ iwctl station wlan0 get-networks
 iwctl --passphrase <passphrase> station wlan9 connect <SSID>
 ```
 
+#### Update system clock
+```
+timedatectl set-ntp true
+```
+
 #### Partitions (dualboot)
 Tools: `fdisk` `cfdisk` `gparted`
 ```
@@ -67,10 +72,13 @@ mkfs.ext4 /dev/nvme1n1p1
 mkswap /dev/nvme1n1p3
 ```
 
-#### Update system clock
+#### Mounting
 ```
-timedatectl set-ntp true
+mount /dev/nvme1n1p1 /mnt                  # mount root
+mount --mkdir /dev/nvme0n1p1 /mnt/boot     # mount EFI
+swapon /dev/nvme1n1p3
 ```
+
 
 ## Configure
 ### Network
