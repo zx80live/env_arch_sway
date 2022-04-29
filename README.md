@@ -122,6 +122,7 @@ hwclock --systohc
 ```
 vim /etc/locale.gen
 locale-gen
+localectl set-locale en_US.UTF-8
 ```
 
 #### Network
