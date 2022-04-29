@@ -147,6 +147,10 @@ passwd    # root password
 useradd -m -g users -G wheel,root,audio -s /bin/zsh <user>
 passwd <user>
 ```
+```
+EDITOR=vim visudo
+# uncomment %wheel ...
+```
 
 ### Drivers
 #### Nvidia
