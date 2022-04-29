@@ -40,7 +40,6 @@ setfont /usr/share/kbd/consolefonts/ter-u22n.psf.gz
 
 #### Network
 ```
-iwctl => exit
 iwctl device list                                               # => wlan0
 iwctl station wlan0 scan
 iwctl station wlan0 get-networks
@@ -62,6 +61,10 @@ nvme1n1     259:5    0 465.8G  0 disk
 ├─nvme1n1p1 259:6    0  97.7G  0 part  /            [F] 
 ├─nvme1n1p2 259:7    0 360.3G  0 part  /home         -
 └─nvme1n1p3 259:8    0   7.8G  0 part  [SWAP]       [F]
+```
+```
+mkfs.ext4 /dev/nvme1n1p1
+mkswap /dev/nvme1n1p3
 ```
 
 ## Configure
