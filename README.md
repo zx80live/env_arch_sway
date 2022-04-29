@@ -47,7 +47,7 @@ iwctl station wlan0 get-networks
 iwctl --passphrase <passphrase> station wlan9 connect <SSID>
 ```
 
-### Partitions (dualboot)
+#### Partitions (dualboot)
 Tools: `fdisk` `cfdisk` `gparted`
 ```
 NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS  FORMAT
