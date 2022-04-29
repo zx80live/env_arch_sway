@@ -88,6 +88,14 @@ genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
 ## Configure
+```
+arch-chroot /mnt
+```
+#### Install packages
+```
+packman -Syyuu
+packman -S vim iwd dhcpcd sudo
+```
 
 ### Network
 ```
