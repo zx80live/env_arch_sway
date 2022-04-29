@@ -118,6 +118,11 @@ ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
 ```
 hwclock --systohc
 ```
+#### Locale
+```
+vim /etc/locale.gen
+locale-gen
+```
 
 ### Network
 ```
