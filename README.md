@@ -162,6 +162,12 @@ os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
+#### Exit
+```
+exit
+umount -R /mnt
+reboot
+```
 
 ### Drivers
 #### Nvidia
