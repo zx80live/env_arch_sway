@@ -72,15 +72,23 @@ mkfs.ext4 /dev/nvme1n1p1
 mkswap /dev/nvme1n1p3
 ```
 
-#### Mounting
+#### Mount
 ```
 mount /dev/nvme1n1p1 /mnt                  # mount root
 mount --mkdir /dev/nvme0n1p1 /mnt/boot     # mount EFI
 swapon /dev/nvme1n1p3
 ```
 
+#### Install
+```
+pacstrap /mnt base linux linux-firmware
+```
+```
+genfstab -U /mnt >> /mnt/etc/fstab
+```
 
 ## Configure
+
 ### Network
 ```
 hostnamectl set-hostname <hostname>
