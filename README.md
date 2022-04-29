@@ -94,7 +94,7 @@ arch-chroot /mnt
 #### Install packages
 ```
 pacman -Syyuu
-pacman -S vim iwd dhcpcd sudo 
+pacman -S vim iwd dhcpcd sudo zsh
 ```
 
 #### Console font
@@ -137,6 +137,15 @@ localectl set-locale en_US.UTF-8
 127.0.0.1        localhost
 ::1              localhost
 127.0.1.1        <hostname>
+```
+
+#### Users
+```
+passwd    # root password
+```
+```
+useradd -m -g users -G wheel,root,audio -s /bin/zsh <user>
+passwd <user>
 ```
 
 ### Drivers
