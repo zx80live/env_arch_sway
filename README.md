@@ -124,7 +124,7 @@ locale-gen
 localectl set-locale en_US.UTF-8
 ```
 
-#### Network
+#### Network [ ]
 ```
 /etc/hostname
 
@@ -151,7 +151,7 @@ EDITOR=vim visudo
 # uncomment %wheel ...
 ```
 
-#### GRUB (dualboot)
+#### GRUB (dualboot) [ ]
 ```
 pacman -S grub efibootmgr os-prober
 ```
