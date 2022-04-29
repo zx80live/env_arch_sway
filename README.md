@@ -67,6 +67,11 @@ mkfs.ext4 /dev/nvme1n1p1
 mkswap /dev/nvme1n1p3
 ```
 
+#### Update system clock
+```
+timedatectl set-ntp true
+```
+
 ## Configure
 ### Network
 ```
