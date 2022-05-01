@@ -50,6 +50,7 @@ iwctl station wlan9 connect <SSID>
 #### Update system clock
 ```
 timedatectl set-ntp true
+timedatectl status
 ```
 
 #### Partitions (GPT, EFI, dualboot)
