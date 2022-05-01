@@ -114,7 +114,7 @@ FONT=ter-u24n.psf.gz
 
 #### Timezone
 ```
-ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+ln -sf /usr/share/zoneinfo/<Region>/<City> /etc/localtime
 ```
 ```
 hwclock --systohc
