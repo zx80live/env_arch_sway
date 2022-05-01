@@ -96,7 +96,7 @@ arch-chroot /mnt
 #### Install packages
 ```
 pacman -Syu
-pacman -S vim iwd dhcpcd sudo zsh
+pacman -S vim iwd dhcpcd networkmanager sudo zsh
 ```
 
 #### Console font
@@ -139,6 +139,8 @@ localectl set-locale en_US.UTF-8
 ::1              localhost
 127.0.1.1        <hostname>
 ```
+
+#### Connect to WiFi (iwd)
 ```
 iwctl device list                                               # => wlan0
 iwctl station wlan0 scan
@@ -148,6 +150,11 @@ iwctl station wlan9 connect <SSID>
 ```
 ```
 sudo dhcpd
+```
+#### Connect to WiFi (NetworkManager)
+```
+systemctl enable dhcpcd.service
+systemctl enable NetworkManager.service
 ```
 
 
