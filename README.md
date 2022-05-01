@@ -35,7 +35,7 @@ Memory: 3420MiB / 39762MiB
 ## Install Arch
 #### Change console font
 ```
-setfont /usr/share/kbd/consolefonts/ter-u22b.psf.gz
+setfont ter-u24b
 ```
 
 #### Network
@@ -102,7 +102,7 @@ pacman -S vim iwd dhcpcd networkmanager sudo zsh
 #### Console font
 ```
 pacman -S terminus-font
-setfont /usr/share/kbd/consolefonts/ter-u22b.psf.gz
+setfont ter-u24b
 ```
 ```
 /etc/vconsole.conf
@@ -188,7 +188,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 #### Exit
 ```
 exit
-umount -R /mnt
+umount -lR /mnt
 reboot
 ```
 
