@@ -209,6 +209,8 @@ The following entries are used in the current config and should be restored from
 ```
 mount --mkdir /dev/nvme0n1p1 /mnt/efi-partition
 tree /mnt/efi-partition
+```
+```
 ── EFI
     └── Boot
          └── bootx64.efi
