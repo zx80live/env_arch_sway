@@ -79,7 +79,7 @@ mkswap /dev/nvme1n1p3
 #### Mount
 ```
 mount /dev/nvme1n1p1 /mnt                  # mount root
-#mount --mkdir /dev/nvme0n1p1 /mnt/boot     # mount EFI
+mount --mkdir /dev/nvme1n1p2 /mnt/home     # mount home
 swapon /dev/nvme1n1p3
 ```
 
