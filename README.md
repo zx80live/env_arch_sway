@@ -52,7 +52,7 @@ iwctl station wlan9 connect <SSID>
 timedatectl set-ntp true
 ```
 
-#### Partitions (dualboot)
+#### Partitions (GPT, EFI, dualboot)
 Tools: `fdisk` `cfdisk` `gparted`
 ```
 NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS  FORMAT
