@@ -112,7 +112,7 @@ setfont ter-u24b
 
 CHARMAP="UTF-8"
 CODESET="Lat7"
-FONT=ter-u24n.psf.gz
+FONT=ter-u24b.psf.gz
 ```
 
 #### Timezone
