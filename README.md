@@ -17,11 +17,6 @@ Guide to setup environment based on Arch Linux and Swaywm for particular hardwar
     + [Backup](#backup)
 
 
-## Write iso to usb
-```
-sudo dd bs=4M if=./archlinux.iso of=/dev/sda status=progress oflag=sync
-```
-
 ## Hardware
 ```
 ThinkPad P53
@@ -32,13 +27,18 @@ GPU: Intel CoffeeLake-H GT2 [UHD Graphics 630]
 Memory: 3420MiB / 39762MiB
 ```
 
+## Write iso to usb
+```
+sudo dd bs=4M if=./archlinux.iso of=/dev/sda status=progress oflag=sync
+```
+
 ## Install Arch
-#### Change console font
+##### Change console font
 ```
 setfont ter-u24b
 ```
 
-#### Network
+##### Network (iwd)
 ```
 iwctl device list                                               # => wlan0
 iwctl station wlan0 scan
@@ -47,12 +47,18 @@ iwctl station wlan0 get-networks
 iwctl station wlan9 connect <SSID>
 ```
 
-#### Update system clock
+##### Update system clock
 ```
 timedatectl status
 timedatectl list-timezones
 timedatectl set-timezone <value>
 timedatectl set-ntp true
+```
+
+##### Keyboard layout
+```
+ls /usr/share/kbd/keymaps/i386/qwerty/
+loadkeys /usr/share/kbd/keymaps/i386/qwerty/<name>.map.gz
 ```
 
 #### Partitions (GPT, EFI, dualboot)
