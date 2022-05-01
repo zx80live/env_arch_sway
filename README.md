@@ -1,5 +1,5 @@
 # env_arch_sway
-Guide to setup environment based on Arch Linux and Swaywm 
+Guide to setup environment based on Arch Linux and Swaywm for particular hardware config (see Hardware section).
 
   * [Write iso to usb](#write-iso-to-usb)
   * [Hardware](#hardware)
