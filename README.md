@@ -79,13 +79,14 @@ mkswap /dev/nvme1n1p3
 #### Mount
 ```
 mount /dev/nvme1n1p1 /mnt                  # mount root
-mount --mkdir /dev/nvme0n1p1 /mnt/boot     # mount EFI
+#mount --mkdir /dev/nvme0n1p1 /mnt/boot     # mount EFI
 swapon /dev/nvme1n1p3
 ```
 
 #### Install
+
 ```
-pacstrap /mnt base linux linux-firmware
+pacstrap /mnt base base-devel linux linux-lts linux-headers linux-firmware intel-ucode sudo networkmanager dhcpcd iwd pulseaudio
 ```
 ```
 genfstab -U /mnt >> /mnt/etc/fstab
