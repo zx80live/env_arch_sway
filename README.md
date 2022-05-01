@@ -86,7 +86,7 @@ swapon /dev/nvme1n1p3
 #### Install
 
 ```
-pacstrap /mnt base base-devel linux linux-lts linux-headers linux-firmware intel-ucode sudo networkmanager dhcpcd iwd pulseaudio
+pacstrap /mnt base base-devel linux linux-lts linux-headers linux-firmware intel-ucode
 ```
 ```
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -99,7 +99,7 @@ arch-chroot /mnt
 #### Install packages
 ```
 pacman -Syu
-pacman -S vim iwd dhcpcd networkmanager sudo zsh
+pacman -S vim iwd dhcpcd networkmanager sudo zsh [pulseaudio]
 ```
 
 #### Console font
