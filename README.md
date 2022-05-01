@@ -205,7 +205,7 @@ sudo efibootmgr -b 3 -B
 ```
 
 ##### Restore EFI entries
-The following entries are used in the current config and should be restored from backup.
+The following initial entries are used in the current config and should be restored from backup.
 ```
 mount --mkdir /dev/nvme0n1p1 /mnt/efi-partition
 tree /mnt/efi-partition
