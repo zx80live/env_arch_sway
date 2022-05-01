@@ -109,7 +109,7 @@ setfont /usr/share/kbd/consolefonts/ter-u22b.psf.gz
 
 CHARMAP="UTF-8"
 CODESET="Lat7"
-FONT=ter-u22n.psf.gz
+FONT=ter-u24n.psf.gz
 ```
 
 #### Timezone
