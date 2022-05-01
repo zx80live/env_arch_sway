@@ -68,7 +68,8 @@ nvme1n1     259:5    0 465.8G  0 disk
 └─nvme1n1p3 259:8    0   7.8G  0 part  [SWAP]       [F]
 ```
 ```
-mkfs.ext4 /dev/nvme1n1p1
+mkfs.ext4 /dev/nvme1n1p1  # format root partition
+mkfs.ext4 /dev/nvme1n1p2  # [Optional] format home partition if needs
 mkswap /dev/nvme1n1p3
 ```
 
