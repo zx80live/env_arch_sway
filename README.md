@@ -204,5 +204,29 @@ Boot0003  ubuntu                  <-- need to be removed
 sudo efibootmgr -b 3 -B
 ```
 
+##### Restore EFI entries
+The following entries are used in the current config and should be restored from backup.
+```
+mount --mkdir /dev/nvme0n1p1 /mnt/efi-partition
+tree /mnt/efi-partition
+── EFI
+    └── Boot
+         └── bootx64.efi
+         └── fbx64.efi
+         └── LenovoBT.EFI
+         └── mmx64.efi
+    └── Microsoft
+         └── Boot
+              └── en-US
+                   └── ...
+              ...     
+              └── BCD
+                   └── ...
+              ...
+         └── Recovery
+              └── BCD
+                   └── ...
+```
+
 ### Backup
 
