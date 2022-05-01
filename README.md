@@ -38,23 +38,6 @@ sudo dd bs=4M if=./archlinux.iso of=/dev/sda status=progress oflag=sync
 setfont ter-u24b
 ```
 
-##### Network (iwd)
-```
-iwctl device list                                               # => wlan0
-iwctl station wlan0 scan
-iwctl station wlan0 get-networks
-
-iwctl station wlan9 connect <SSID>
-```
-
-##### Update system clock
-```
-timedatectl status
-timedatectl list-timezones
-timedatectl set-timezone <value>
-timedatectl set-ntp true
-```
-
 #### Partitions (GPT, EFI, dualboot)
 Tools: `fdisk` `cfdisk` `gparted`
 ```
@@ -81,6 +64,23 @@ mkswap /dev/nvme1n1p3
 mount /dev/nvme1n1p1 /mnt                  # mount root
 mount --mkdir /dev/nvme1n1p2 /mnt/home     # mount home
 swapon /dev/nvme1n1p3
+```
+
+##### Network (iwd)
+```
+iwctl device list                                               # => wlan0
+iwctl station wlan0 scan
+iwctl station wlan0 get-networks
+
+iwctl station wlan9 connect <SSID>
+```
+
+##### Update system clock
+```
+timedatectl status
+timedatectl list-timezones
+timedatectl set-timezone <value>
+timedatectl set-ntp true
 ```
 
 #### Install
