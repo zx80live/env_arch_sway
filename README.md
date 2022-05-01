@@ -164,13 +164,17 @@ EDITOR=vim visudo
 # uncomment %wheel ...
 ```
 
-#### ⚠️ GRUB (dualboot)
+#### GRUB (dualboot)
 ```
-pacman -S grub efibootmgr os-prober
+pacman -S grub efibootmgr os-prober mtools
 ```
 ```
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
-os-prober
+/etc/default/grub
+...
+GRUB_DISABLE_OS_PROBER=false
+```
+```
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
