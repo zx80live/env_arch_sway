@@ -95,7 +95,7 @@ arch-chroot /mnt
 ```
 #### Install packages
 ```
-pacman -Syyuu
+pacman -Syu
 pacman -S vim iwd dhcpcd sudo zsh
 ```
 
