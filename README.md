@@ -55,12 +55,6 @@ timedatectl set-timezone <value>
 timedatectl set-ntp true
 ```
 
-##### Keyboard layout
-```
-ls /usr/share/kbd/keymaps/i386/qwerty/
-loadkeys /usr/share/kbd/keymaps/i386/qwerty/<name>.map.gz
-```
-
 #### Partitions (GPT, EFI, dualboot)
 Tools: `fdisk` `cfdisk` `gparted`
 ```
