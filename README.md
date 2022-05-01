@@ -35,7 +35,7 @@ Memory: 3420MiB / 39762MiB
 ## Install Arch
 #### Change console font
 ```
-setfont /usr/share/kbd/consolefonts/ter-u22n.psf.gz
+setfont /usr/share/kbd/consolefonts/ter-u22b.psf.gz
 ```
 
 #### Network
@@ -44,7 +44,7 @@ iwctl device list                                               # => wlan0
 iwctl station wlan0 scan
 iwctl station wlan0 get-networks
 
-iwctl --passphrase <passphrase> station wlan9 connect <SSID>
+iwctl station wlan9 connect <SSID>
 ```
 
 #### Update system clock
@@ -100,7 +100,7 @@ pacman -S vim iwd dhcpcd sudo zsh
 #### Console font
 ```
 pacman -S terminus-font
-setfont /usr/share/kbd/consolefonts/ter-u22n.psf.gz
+setfont /usr/share/kbd/consolefonts/ter-u22b.psf.gz
 ```
 ```
 /etc/vconsole.conf
@@ -142,7 +142,7 @@ iwctl device list                                               # => wlan0
 iwctl station wlan0 scan
 iwctl station wlan0 get-networks
 
-iwctl --passphrase <passphrase> station wlan9 connect <SSID>
+iwctl station wlan9 connect <SSID>
 ```
 ```
 sudo dhcpd
