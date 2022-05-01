@@ -146,6 +146,11 @@ localectl set-locale en_US.UTF-8
 
 #### Connect to WiFi (iwd)
 ```
+systemctl stop NetworkManager.service
+systemctl enable dhcpcd.service
+systemctl start dhcpcd.service
+```
+```
 iwctl device list                                               # => wlan0
 iwctl station wlan0 scan
 iwctl station wlan0 get-networks
@@ -159,6 +164,13 @@ sudo dhcpd
 ```
 systemctl enable dhcpcd.service
 systemctl enable NetworkManager.service
+```
+```
+nmcli device status
+nmcli radio wifi
+nmcli radio wifi on
+nmcli device wifi list
+nmcli device wifi connect "<SSID>" password <password> name "<name>"
 ```
 
 
