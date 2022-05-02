@@ -292,6 +292,8 @@ reboot
 #### Nvidia
 
 ## Install Swaywm
+### Packages
+`sway``swaylock``swayidle`
 
 ## Utils
 ### Services
