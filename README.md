@@ -334,6 +334,20 @@ p10k configure
 
 ### Media
 
+### Wayland
+```
+pacman -S qt6-wayland qt5ct
+```
+```
+~/.zshenv
+...
+MOZ_ENABLE_WAYLAND=1
+GDK_BACKEND=x11
+QT_QPA_PLATFORM="wayland;xcb"
+QT_QPA_PLATFORMTHEME=qt5ct
+```
+### Chromium
+
 
 ## Utils
 ### Services
@@ -412,4 +426,9 @@ tree /mnt/efi-partition
 ```
 sudo modprobe -r psmouse
 sudo modprobe psmouse
+```
+
+##### Print environment variables
+```
+printenv
 ```
