@@ -349,7 +349,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 ```
 ### Chromium
 ```
-chromium --enable-features=UseOzonePlatform --ozone-platform=wayland
+echo "alias chromium='chromium --enable-features=UseOzonePlatform --ozone-platform=wayland'" >> ~/.zshenv
 ```
 
 ## Utils
