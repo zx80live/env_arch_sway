@@ -104,6 +104,7 @@ pacman -Syu
 pacman -S vim iwd dhcpcd networkmanager sudo zsh hdparm util-linux wget git
 ```
 
+### Disks
 #### SSD trim
 Check if is TRIM supported:
 ```
@@ -133,7 +134,7 @@ UID=xxx-xxx-xxx  /  ext4  rw,realtime,discard  0 1
 sudo fstrim -v /
 ```
 
-##### Swappiness
+#### Swappiness
 ```
 sysctl vm.swappiness    # default=60
 ```
@@ -143,6 +144,15 @@ vm.swappiness=10
 
 sudo reboot
 ```
+
+#### Ext4 tuning
+Use `relatime` attr instead of `noatime`:
+```
+/etc/fstab
+UUID=xxx-xxx-xxx  / ext4 rw,relatime 0 1
+
+```
+
 
 #### Console font
 ```
