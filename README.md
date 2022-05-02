@@ -247,6 +247,18 @@ sudo journalctl -p 3 -xb
 sudo pacman -Rns $(pacman -Qtdq)
 ```
 
+##### AUR helper
+```
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+```
+yay -Syy
+```
+
+
 ### Disk utilities
 ##### Show storages and partitions
 `lsblk` `fdisk -l`
