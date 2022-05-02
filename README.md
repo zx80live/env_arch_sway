@@ -260,3 +260,9 @@ tree /mnt/efi-partition
 
 ### Backup
 
+## HowTo
+##### Restart touchpad/trackpoint
+```
+sudo modprobe -r psmouse
+sudo modprobe psmouse
+```
