@@ -234,6 +234,19 @@ reboot
 ## Install Swaywm
 
 ## Utils
+### Services
+##### Show errors
+```
+sudo systemctl --failed
+sudo journalctl -p 3 -xb
+```
+
+### Pacman
+##### Remove orphans
+```
+sudo pacman -Rns $(pacman -Qtdq)
+```
+
 ### Disk utilities
 ##### Show storages and partitions
 `lsblk` `fdisk -l`
