@@ -103,6 +103,15 @@ pacman -Syu
 pacman -S vim iwd dhcpcd networkmanager sudo zsh
 ```
 
+##### Swappiness
+```
+sysctl vm.swappiness    # default=60
+```
+```
+/etc/sysctl.d/99-swappiness.conf
+vm.swappiness=10
+```
+
 #### Console font
 ```
 pacman -S terminus-font
