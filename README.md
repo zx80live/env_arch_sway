@@ -119,10 +119,6 @@ Use one of **periodical** (recommended) or **continuous** TRIM
 sudo systemctl enable fstrim.timer
 sudo systemctl start fstrim.timer
 ```
-Manual trim:
-```
-sudo fstrim -v /
-```
 ##### SSD trim (continuous)
 Add `discard` option to mount
 ```
@@ -130,6 +126,10 @@ Add `discard` option to mount
 
 UID=xxx-xxx-xxx  /  ext4  rw,realtime,discard  0 1
 ...
+```
+##### SSD trim (manual)
+```
+sudo fstrim -v /
 ```
 
 ##### Swappiness
