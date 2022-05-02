@@ -292,10 +292,25 @@ reboot
 #### Nvidia
 
 ## Install Swaywm
-### Packages
+##### Packages
 ```
-pacman -S sway swaylock swayidle wofi wl-clipboard alacritty zenity brightnessctl waybar slurp grim wf-recorder
+pacman -S sway swaylock swayidle wofi wl-clipboard wf-recorder zenity brightnessctl waybar slurp grim alacritty
 ```
+##### Autostart
+```
+~/.zprofile
+
+if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  sway
+fi
+```
+
+### Terminal
+```
+```
+
+### Media
+
 
 ## Utils
 ### Services
