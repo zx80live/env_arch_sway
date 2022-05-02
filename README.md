@@ -341,10 +341,11 @@ pacman -S qt6-wayland qt5ct
 ```
 ~/.zshenv
 ...
-MOZ_ENABLE_WAYLAND=1
-GDK_BACKEND=x11
-QT_QPA_PLATFORM="wayland;xcb"
-QT_QPA_PLATFORMTHEME=qt5ct
+export MOZ_ENABLE_WAYLAND=1
+export GDK_BACKEND=x11
+export QT_QPA_PLATFORM="wayland;xcb"
+export QT_QPA_PLATFORMTHEME=qt5ct
+export _JAVA_AWT_WM_NONREPARENTING=1
 ```
 ### Chromium
 
