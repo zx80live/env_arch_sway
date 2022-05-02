@@ -154,6 +154,19 @@ UUID=xxx-xxx-xxx  / ext4 rw,relatime 0 1
 ...
 ```
 
+#### IO Scheduler
+##### Show current scheduler
+```
+cat /sys/block/nvme1n1/queue/scheduler
+
+[none] mq-deadline kyber bfq               # none value is selected by default
+```
+##### Use BFQ scheduler
+```
+su -l
+echo bfq > /sys/block/nvme1n1/queue/scheduler
+```
+
 
 #### Console font
 ```
