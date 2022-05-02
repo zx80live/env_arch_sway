@@ -101,7 +101,7 @@ arch-chroot /mnt
 #### Install packages
 ```
 pacman -Syu
-pacman -S vim iwd dhcpcd networkmanager sudo zsh zsh-completions hdparm util-linux wget git
+pacman -S vim iwd dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux wget git
 ```
 
 ### Disks
