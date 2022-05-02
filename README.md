@@ -452,3 +452,6 @@ sudo modprobe psmouse
 ```
 printenv
 ```
+
+## Issues
+https://github.com/keybase/client/issues/19614
