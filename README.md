@@ -101,7 +101,7 @@ arch-chroot /mnt
 #### Install packages
 ```
 pacman -Syu
-pacman -S vim iwd dhcpcd networkmanager sudo zsh hdparm util-linux
+pacman -S vim iwd dhcpcd networkmanager sudo zsh hdparm util-linux wget git
 ```
 
 #### SSD trim
