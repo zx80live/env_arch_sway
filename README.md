@@ -234,6 +234,7 @@ sudo uwf status
 systemctl stop NetworkManager.service
 systemctl enable dhcpcd.service
 systemctl start dhcpcd.service
+systemctl start iwd.service
 ```
 ```
 iwctl device list                                               # => wlan0
