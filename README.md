@@ -294,7 +294,7 @@ reboot
 ## Install Swaywm
 ##### Packages
 ```
-pacman -S sway swaylock swayidle wofi wl-clipboard wf-recorder zenity brightnessctl waybar slurp grim alacritty
+pacman -S sway swaylock swayidle wofi wl-clipboard wf-recorder zenity brightnessctl waybar slurp grim 
 ```
 ##### Autostart
 ```
@@ -305,8 +305,21 @@ if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
 fi
 ```
 
+### Fonts
+```
+yay -S font-manager
+```
+
 ### Terminal
 ```
+pacman -S alacritty
+```
+```
+yay -S --noconfirm zsh-theme-powerlevel10k-git
+echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+```
+```
+p10k configure
 ```
 
 ### Media
