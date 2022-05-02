@@ -103,6 +103,8 @@ pacman -Syu
 pacman -S vim iwd dhcpcd networkmanager sudo zsh
 ```
 
+##### SSD trim
+
 ##### Swappiness
 ```
 sysctl vm.swappiness    # default=60
