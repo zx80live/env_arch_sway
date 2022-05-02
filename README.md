@@ -161,7 +161,7 @@ cat /sys/block/nvme1n1/queue/scheduler
 
 [none] mq-deadline kyber bfq               # none value is selected by default
 ```
-For NVME the `none` scheduler is better choise
+For NVME the `none` scheduler is better choise because the NVME's parallelism is used
 
 #### Console font
 ```
