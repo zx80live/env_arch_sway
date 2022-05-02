@@ -356,6 +356,19 @@ ui.systemUsesDarkTheme=1
 echo "alias chromium='chromium --enable-features=UseOzonePlatform --ozone-platform=wayland'" >> ~/.zshenv
 ```
 
+### IM
+##### XMPP
+````
+pacman -S gajim
+````
+##### Telegram
+```
+pacman -S telegram-desktop
+```
+##### Zoom
+
+
+
 ## Utils
 ### Services
 ##### Show errors
