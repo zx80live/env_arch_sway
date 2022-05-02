@@ -293,7 +293,9 @@ reboot
 
 ## Install Swaywm
 ### Packages
-`sway``swaylock``swayidle`
+```
+pacman -S sway swaylock swayidle wofi wl-clipboard alacritty zenity brightnessctl waybar slurp grim wf-recorder
+```
 
 ## Utils
 ### Services
