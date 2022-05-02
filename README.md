@@ -254,7 +254,6 @@ nmcli device wifi list
 nmcli device wifi connect "<SSID>" password <password> name "<name>"
 ```
 
-
 #### Users
 ```
 passwd    # root password
