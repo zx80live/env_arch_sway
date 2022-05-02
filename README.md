@@ -347,6 +347,11 @@ export QT_QPA_PLATFORM="wayland;xcb"
 export QT_QPA_PLATFORMTHEME=qt5ct
 export _JAVA_AWT_WM_NONREPARENTING=1
 ```
+### Firefox
+```
+about:config
+full-screen-api.ignore-widgets=true  # allows to keep container size in fullscreen mode
+```
 ### Chromium
 ```
 echo "alias chromium='chromium --enable-features=UseOzonePlatform --ozone-platform=wayland'" >> ~/.zshenv
