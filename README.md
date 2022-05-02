@@ -110,6 +110,8 @@ sysctl vm.swappiness    # default=60
 ```
 /etc/sysctl.d/99-swappiness.conf
 vm.swappiness=10
+
+sudo reboot
 ```
 
 #### Console font
