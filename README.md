@@ -149,8 +149,9 @@ sudo reboot
 Use `relatime` attr instead of `noatime`:
 ```
 /etc/fstab
-UUID=xxx-xxx-xxx  / ext4 rw,relatime 0 1
 
+UUID=xxx-xxx-xxx  / ext4 rw,relatime 0 1
+...
 ```
 
 
