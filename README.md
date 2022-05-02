@@ -100,10 +100,37 @@ arch-chroot /mnt
 #### Install packages
 ```
 pacman -Syu
-pacman -S vim iwd dhcpcd networkmanager sudo zsh
+pacman -S vim iwd dhcpcd networkmanager sudo zsh hdparm util-linux
 ```
 
-##### SSD trim
+#### SSD trim
+Check if is TRIM supported:
+```
+lsblk --discard
+
+NAME   DISC-GRAN DISC-MAX
+nvmeX    512B     2T           # if values > 0 then TRIM is supported
+...
+```
+Use one of **periodical** (recommended) or **continuous** TRIM
+
+##### SSD trim (periodical)
+```
+sudo systemctl enable fstrim.timer
+sudo systemctl start fstrim.timer
+```
+Manual trim:
+```
+sudo fstrim -v /
+```
+##### SSD trim (continuous)
+Add `discard` option to mount
+```
+/etc/fstab
+
+UID=xxx-xxx-xxx  /  ext4  rw,realtime,discard  0 1
+...
+```
 
 ##### Swappiness
 ```
