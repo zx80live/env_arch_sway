@@ -351,6 +351,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 ```
 about:config
 full-screen-api.ignore-widgets=true  # allows to keep container size in fullscreen mode
+ui.systemUsesDarkTheme=1
 ```
 ### Chromium
 ```
