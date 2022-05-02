@@ -289,7 +289,19 @@ reboot
 ```
 
 ### Drivers
-#### Nvidia
+#### Graphics
+##### Intel
+```
+pacman -S mesa libva-intel-driver libva-utils
+```
+```
+vainfo
+...
+vainfo: Driver version: Intel i965 driver for Intel(R) Coffee Lake - 2.4.1
+...
+```
+
+##### Nvidia
 
 ## Install Swaywm
 ##### Packages
