@@ -87,7 +87,7 @@ timedatectl set-ntp true
 #### Install
 
 ```
-pacstrap /mnt base base-devel linux linux-lts linux-headers linux-firmware intel-ucode
+pacstrap /mnt base base-devel [linux] [linux-headers] linux-lts linux-lts-headers linux-firmware intel-ucode
 ```
 ```
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -100,7 +100,7 @@ arch-chroot /mnt
 #### Install packages
 ```
 pacman -Syu
-pacman -S vim iwd dhcpcd networkmanager sudo zsh [pulseaudio]
+pacman -S vim iwd dhcpcd networkmanager sudo zsh
 ```
 
 #### Console font
@@ -142,6 +142,26 @@ localectl set-locale en_US.UTF-8
 127.0.0.1        localhost
 ::1              localhost
 127.0.1.1        <hostname>
+```
+
+#### Firewall
+```
+sudo pacman -S ufw
+```
+```
+sudo systemctl disable iptables.service
+sudo systemctl stop iptables.service
+
+sudo systemctl enable ufw.service
+sudo systemctl start ufw.service
+sudo ufw status verbose
+
+sudo ufw default deny
+sudo ufw allow from 192.168.0.0/24
+sudo ufw allow <application>
+
+sudo uwf enable
+sudo uwf status
 ```
 
 #### Connect to WiFi (iwd)
