@@ -348,7 +348,9 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export _JAVA_AWT_WM_NONREPARENTING=1
 ```
 ### Chromium
-
+```
+chromium --enable-features=UseOzonePlatform --ozone-platform=wayland
+```
 
 ## Utils
 ### Services
