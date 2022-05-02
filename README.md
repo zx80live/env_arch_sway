@@ -164,7 +164,7 @@ cat /sys/block/nvme1n1/queue/scheduler
 ##### Use BFQ scheduler
 ```
 su -l
-echo bfq > /sys/block/nvme1n1/queue/scheduler
+echo bfq > /sys/block/nvme1n1/queue/scheduler   # set bfq temporary
 ```
 
 
