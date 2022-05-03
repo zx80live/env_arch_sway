@@ -230,7 +230,7 @@ For NVME the `none` scheduler is better choise because the NVME's parallelism is
 
 #### Audio
 ```
-pacman -S pipewire lib32-pipewire pipewire-jack lib32-pipewire-jack pipewire-alsa pipewire-pulse pipewire-media-session xdg-desktop-portal-wlr alsa alsa-utils helvum
+
 ```
 
 #### Video drivers
