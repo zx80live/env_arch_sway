@@ -89,16 +89,7 @@ pacman -Syu
 pacman -S vim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux wget git htop bpytop make
 ```
 
-##### AUR helper
-```
-sudo pacman -S --needed git base-devel
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-```
-```
-yay -Syy
-```
+
 
 #### Users
 ```
@@ -434,6 +425,16 @@ sudo ufw allow 5353/udp
 ```
 # browse network devices including wi-fi printers (will be availabled after reboot)
 avahi-browse --all --ignore-local --resolve --terminate
+```
+
+##### AUR helper
+```
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+```
+yay -Syy
 ```
 
 ## Issues
