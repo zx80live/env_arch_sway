@@ -143,6 +143,7 @@ localectl set-locale en_US.UTF-8
 ```
 systemctl enable dhcpcd.service
 systemctl enable NetworkManager.service
+systemctl mask NetworkManager-wain-online.service
 ```
 
 
