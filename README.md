@@ -257,6 +257,7 @@ sudo ufw status verbose
 
 sudo ufw default deny
 sudo ufw allow from 192.168.0.0/24
+sudo ufw allow from 192.168.1.0/24
 sudo ufw allow <application>
 
 sudo uwf enable
