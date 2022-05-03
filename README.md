@@ -83,10 +83,10 @@ genfstab -U /mnt >> /mnt/etc/fstab
 ```
 arch-chroot /mnt
 ```
-#### Install packages
+#### Install common packages
 ```
 pacman -Syu
-pacman -S vim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux wget git
+pacman -S vim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux wget git htop bpytop make
 ```
 #### Users
 ```
@@ -146,10 +146,7 @@ sudo pacman -S ufw
 ```
 ```
 sudo systemctl disable iptables.service
-sudo systemctl stop iptables.service
-
 sudo systemctl enable ufw.service
-sudo systemctl start ufw.service
 sudo ufw status verbose
 
 sudo ufw default deny
@@ -160,7 +157,7 @@ sudo uwf enable
 sudo uwf status
 ```
 
-#### Connect to WiFi (NetworkManager)
+#### Network manager
 ```
 systemctl enable dhcpcd.service
 systemctl enable NetworkManager.service
@@ -186,7 +183,8 @@ GRUB_DISABLE_OS_PROBER=false
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
-#### SSD trim
+#### Disks
+##### SSD trim
 Check if is TRIM supported:
 ```
 lsblk --discard
@@ -214,7 +212,7 @@ UID=xxx-xxx-xxx  /  ext4  rw,realtime,discard  0 1
 ```
 sudo fstrim -v /
 ```
-#### Swappiness
+##### Swappiness
 ```
 sysctl vm.swappiness    # default=60
 ```
@@ -224,7 +222,7 @@ vm.swappiness=10
 
 sudo reboot
 ```
-#### Ext4 tuning
+##### Ext4 tuning
 Use `relatime` attr instead of `noatime`:
 ```
 /etc/fstab
@@ -233,8 +231,7 @@ UUID=xxx-xxx-xxx  / ext4 rw,relatime 0 1
 ...
 ```
 
-#### IO Scheduler
-##### Show current scheduler
+##### IO Scheduler
 ```
 cat /sys/block/nvme1n1/queue/scheduler
 
@@ -253,6 +250,9 @@ vainfo
 vainfo: Driver version: Intel i965 driver for Intel(R) Coffee Lake - 2.4.1
 ...
 ```
+
+##### Printer (Brother)
+
 
 #### Exit
 ```
