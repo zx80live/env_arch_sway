@@ -266,8 +266,17 @@ vainfo: Driver version: Intel i965 driver for Intel(R) Coffee Lake - 2.4.1
 ##### Printer (Brother)
 ```
 yay -S brother-dcpl2550dw
+pacman -S cups cups-filters avahi
 ```
-
+```
+systemctl disable systemd-resolved.service
+systemctl enable avahi-daemon.service
+systemctl enable cups
+```
+```
+# browse network devices including wi-fi printers (will be availabled after reboot)
+avahi-browse --all --ignore-local --resolve --terminate
+```
 
 #### Exit
 ```
