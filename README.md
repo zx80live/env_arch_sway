@@ -10,12 +10,12 @@ GPU: NVIDIA Quadro T1000 Mobile
 GPU: Intel CoffeeLake-H GT2 [UHD Graphics 630]
 Memory: 3420MiB / 39762MiB
 ```
-
-## Install Arch
-##### Write iso to usb
+## Create bootable USB
 ```
 sudo dd bs=4M if=./archlinux.iso of=/dev/sda status=progress oflag=sync
 ```
+
+## Install Arch
 ##### Change console font
 ```
 setfont ter-u24b
