@@ -308,6 +308,15 @@ echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zs
 ```
 p10k configure
 ```
+### Firefox
+```
+echo "export MOZ_ENABLE_WAYLAND=1" >> ~/.zshenv
+```
+```
+about:config
+full-screen-api.ignore-widgets=true  # allows to keep container size in fullscreen mode
+ui.systemUsesDarkTheme=1
+```
 
 ### Media
 
@@ -318,16 +327,10 @@ pacman -S qt6-wayland qt5ct
 ```
 ~/.zshenv
 ...
-export MOZ_ENABLE_WAYLAND=1
 export QT_QPA_PLATFORM="wayland;xcb"
 export _JAVA_AWT_WM_NONREPARENTING=1
 ```
-### Firefox
-```
-about:config
-full-screen-api.ignore-widgets=true  # allows to keep container size in fullscreen mode
-ui.systemUsesDarkTheme=1
-```
+
 ### Chromium
 ```
 echo "alias chromium='chromium --enable-features=UseOzonePlatform --ozone-platform=wayland'" >> ~/.zshenv
