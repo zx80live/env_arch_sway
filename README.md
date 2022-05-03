@@ -61,6 +61,7 @@ mkswap /dev/nvme1n1p3
 ```
 mount /dev/nvme1n1p1 /mnt                   # mount root
 mount --mkdir /dev/nvme1n1p2 /mnt/home      # mount home
+mount --mkdir /dev/nvme0n1p1 /mnt/boot/efi  # mount efi
 swapon /dev/nvme1n1p3
 ```
 ##### Update system clock
@@ -73,10 +74,6 @@ timedatectl set-ntp true
 ### Install base packages
 ```
 pacstrap /mnt base base-devel [linux] [linux-headers] linux-lts linux-lts-headers linux-firmware intel-ucode
-```
-### Generate fstab
-```
-mount --mkdir /dev/nvme0n1p1 /mnt/boot/efi  # mount efi
 ```
 ```
 genfstab -U /mnt >> /mnt/etc/fstab
