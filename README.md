@@ -230,7 +230,7 @@ lsmod|grep -i vid
 ```
 ##### Intel
 ```
-pacman -S mesa libva-intel-driver libva-utils
+pacman -S mesa libva-intel-driver libva-utils intel-gpu-tools
 ```
 ```
 vainfo
@@ -242,6 +242,12 @@ vainfo: Driver version: Intel i965 driver for Intel(R) Coffee Lake - 2.4.1
 lsmod|grep -i vid
 ...
 video                  57344  3 thinkpad_acpi,i915,nouvea  # driver is loaded
+```
+```
+mpv --hwdec=auto <videofile>   # test hardware decoder
+```
+```
+sudo intel_gpu_top             # view GPU activity
 ```
 
 
