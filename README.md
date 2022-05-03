@@ -264,6 +264,16 @@ sudo uwf enable
 sudo uwf status
 ```
 
+#### AUR helper
+```
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+```
+yay -Syy
+```
+
 ## Install Swaywm
 ##### Packages
 ```
@@ -344,11 +354,7 @@ sudo systemctl --failed
 sudo journalctl -p 3 -xb
 ```
 
-### Pacman
-##### Remove orphans
-```
-sudo pacman -Rns $(pacman -Qtdq)
-```
+
 
 
 
@@ -427,15 +433,10 @@ sudo ufw allow 5353/udp
 # browse network devices including wi-fi printers (will be availabled after reboot)
 avahi-browse --all --ignore-local --resolve --terminate
 ```
-
-##### AUR helper
+### Pacman
+##### Remove orphans
 ```
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-```
-```
-yay -Syy
+sudo pacman -Rns $(pacman -Qtdq)
 ```
 
 ## Issues
