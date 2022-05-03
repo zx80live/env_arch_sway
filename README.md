@@ -288,12 +288,16 @@ fi
 
 ### Fonts
 ```
-yay -S font-manager
+yay -S font-manager ttf-meslo-nerd-font-powerlevel10k nerd-fonts-terminus nerd-fonts-source-code-pro
 ```
 
 ### Terminal
 ```
 pacman -S alacritty
+```
+```
+mkdir ~/.config/alacritty
+cp /usr/share/doc/alacritty/example/alacritty.yml ~/.config/alacritty/alacritty.yml
 ```
 ```
 yay -S --noconfirm zsh-theme-powerlevel10k-git
