@@ -180,7 +180,7 @@ pacman -S grub efibootmgr os-prober mtools
 GRUB_DISABLE_OS_PROBER=false
 ```
 ```
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 #### Disks
