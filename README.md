@@ -86,7 +86,7 @@ arch-chroot /mnt
 #### Install common packages
 ```
 pacman -Syu
-pacman -S vim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux wget git htop bpytop make
+pacman -S vim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux wget git htop bpytop make ranger
 ```
 #### Users
 ```
