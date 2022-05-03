@@ -447,5 +447,10 @@ sudo pacman -Rns $(pacman -Qtdq)
 sudo mount --mkdir -t ntfs3 /dev/<device> /mnt/<target>
 ```
 
+#### Analyze systemd
+```
+systemd-analyze blame
+```
+
 ## Issues
 https://github.com/keybase/client/issues/19614
