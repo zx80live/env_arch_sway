@@ -10,7 +10,11 @@ GPU: NVIDIA Quadro T1000 Mobile
 GPU: Intel CoffeeLake-H GT2 [UHD Graphics 630]
 Memory: 3420MiB / 39762MiB
 ```
-## Create bootable USB
+
+
+## Install Arch
+### Prepare installation
+##### Create bootable USB
 ```
 lsblk
 
@@ -22,8 +26,6 @@ sda           8:16   0 931.5G  0 disk  # target usb flash
 ```
 sudo dd bs=4M if=./archlinux.iso of=/dev/sda status=progress oflag=sync
 ```
-
-## Install Arch
 ##### Change console font
 ```
 setfont ter-u24b
@@ -33,7 +35,7 @@ setfont ter-u24b
 iwctl device list                                               # => wlan0
 iwctl station wlan0 scan
 iwctl station wlan0 get-networks
-iwctl station wlan9 connect <SSID>
+iwctl station wlan0 connect <SSID>
 ```
 ##### Partitions (GPT, EFI, dualboot)
 Tools: `fdisk` `cfdisk` `gparted`
@@ -69,7 +71,7 @@ timedatectl list-timezones
 timedatectl set-timezone <value>
 timedatectl set-ntp true
 ```
-##### Install base packages
+### Install base packages
 ```
 pacstrap /mnt base base-devel [linux] [linux-headers] linux-lts linux-lts-headers linux-firmware intel-ucode
 ```
@@ -77,16 +79,16 @@ pacstrap /mnt base base-devel [linux] [linux-headers] linux-lts linux-lts-header
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-#### Post instal configuration
+### System configuration
 ```
 arch-chroot /mnt
 ```
-##### Install packages
+#### Install packages
 ```
 pacman -Syu
 pacman -S vim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux wget git
 ```
-##### Users
+#### Users
 ```
 passwd    # root password
 ```
@@ -98,84 +100,6 @@ passwd <user>
 EDITOR=vim visudo
 # uncomment %wheel ...
 ```
-##### GRUB (dualboot)
-```
-pacman -S grub efibootmgr os-prober mtools
-```
-```
-/etc/default/grub
-...
-GRUB_DISABLE_OS_PROBER=false
-```
-```
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck
-grub-mkconfig -o /boot/grub/grub.cfg
-```
-##### Exit
-```
-exit
-umount -lR /mnt
-reboot
-```
-
-## Configure
-### Disks
-#### SSD trim
-Check if is TRIM supported:
-```
-lsblk --discard
-
-NAME   DISC-GRAN DISC-MAX
-nvmeX    512B     2T           # if values > 0 then TRIM is supported
-...
-```
-Use one of **periodical** (recommended) or **continuous** TRIM
-
-##### SSD trim (periodical)
-```
-sudo systemctl enable fstrim.timer
-sudo systemctl start fstrim.timer
-```
-##### SSD trim (continuous)
-Add `discard` option to mount
-```
-/etc/fstab
-
-UID=xxx-xxx-xxx  /  ext4  rw,realtime,discard  0 1
-...
-```
-##### SSD trim (manual)
-```
-sudo fstrim -v /
-```
-#### Swappiness
-```
-sysctl vm.swappiness    # default=60
-```
-```
-/etc/sysctl.d/99-swappiness.conf
-vm.swappiness=10
-
-sudo reboot
-```
-#### Ext4 tuning
-Use `relatime` attr instead of `noatime`:
-```
-/etc/fstab
-
-UUID=xxx-xxx-xxx  / ext4 rw,relatime 0 1
-...
-```
-
-#### IO Scheduler
-##### Show current scheduler
-```
-cat /sys/block/nvme1n1/queue/scheduler
-
-[none] mq-deadline kyber bfq               # none value is selected by default
-```
-For NVME the `none` scheduler is better choise because the NVME's parallelism is used
-
 #### Console font
 ```
 pacman -S terminus-font
@@ -249,8 +173,76 @@ nmcli device wifi list
 nmcli device wifi connect "<SSID>" password <password> name "<name>"
 ```
 
-### Drivers
-#### Graphics
+#### GRUB (dualboot)
+```
+pacman -S grub efibootmgr os-prober mtools
+```
+```
+/etc/default/grub
+...
+GRUB_DISABLE_OS_PROBER=false
+```
+```
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+#### SSD trim
+Check if is TRIM supported:
+```
+lsblk --discard
+
+NAME   DISC-GRAN DISC-MAX
+nvmeX    512B     2T           # if values > 0 then TRIM is supported
+...
+```
+Use one of **periodical** (recommended) or **continuous** TRIM
+
+##### SSD trim (periodical)
+```
+sudo systemctl enable fstrim.timer
+sudo systemctl start fstrim.timer
+```
+##### SSD trim (continuous)
+Add `discard` option to mount
+```
+/etc/fstab
+
+UID=xxx-xxx-xxx  /  ext4  rw,realtime,discard  0 1
+...
+```
+##### SSD trim (manual)
+```
+sudo fstrim -v /
+```
+#### Swappiness
+```
+sysctl vm.swappiness    # default=60
+```
+```
+/etc/sysctl.d/99-swappiness.conf
+vm.swappiness=10
+
+sudo reboot
+```
+#### Ext4 tuning
+Use `relatime` attr instead of `noatime`:
+```
+/etc/fstab
+
+UUID=xxx-xxx-xxx  / ext4 rw,relatime 0 1
+...
+```
+
+#### IO Scheduler
+##### Show current scheduler
+```
+cat /sys/block/nvme1n1/queue/scheduler
+
+[none] mq-deadline kyber bfq               # none value is selected by default
+```
+For NVME the `none` scheduler is better choise because the NVME's parallelism is used
+
+#### Drivers
 ##### Intel
 ```
 pacman -S mesa libva-intel-driver libva-utils
@@ -260,6 +252,13 @@ vainfo
 ...
 vainfo: Driver version: Intel i965 driver for Intel(R) Coffee Lake - 2.4.1
 ...
+```
+
+#### Exit
+```
+exit
+umount -lR /mnt
+reboot
 ```
 
 ## Install Swaywm
