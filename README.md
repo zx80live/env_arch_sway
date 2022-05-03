@@ -1,22 +1,6 @@
 # env_arch_sway
 Guide to setup environment based on Arch Linux and Swaywm for particular hardware config (see Hardware section).
 
-  * [Write iso to usb](#write-iso-to-usb)
-  * [Hardware](#hardware)
-  * [Install Arch](#install-arch)
-    + [Change console font](#change-console-font)
-    + [Network](#network)
-    + [Partitions (dualboot)](#partitions--dualboot-)
-    + [Drivers](#drivers)
-      - [Nvidia](#nvidia)
-  * [Install Swaywm](#install-swaywm)
-  * [Utils](#utils)
-    + [Disk utilities](#disk-utilities)
-        * [Show storages and partitions](#show-storages-and-partitions)
-        * [Remove unused EFI entries](#remove-unused-efi-entries)
-    + [Backup](#backup)
-
-
 ## Hardware
 ```
 ThinkPad P53
@@ -27,8 +11,6 @@ GPU: Intel CoffeeLake-H GT2 [UHD Graphics 630]
 Memory: 3420MiB / 39762MiB
 ```
 
-
-
 ## Install Arch
 ##### Write iso to usb
 ```
@@ -38,8 +20,7 @@ sudo dd bs=4M if=./archlinux.iso of=/dev/sda status=progress oflag=sync
 ```
 setfont ter-u24b
 ```
-
-#### Partitions (GPT, EFI, dualboot)
+##### Partitions (GPT, EFI, dualboot)
 Tools: `fdisk` `cfdisk` `gparted`
 ```
 NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS  FORMAT
@@ -59,21 +40,18 @@ mkfs.ext4 /dev/nvme1n1p1  # format root partition
 mkfs.ext4 /dev/nvme1n1p2  # [Optional] format home partition if needs
 mkswap /dev/nvme1n1p3
 ```
-
-#### Mount
+##### Mount
 ```
 mount /dev/nvme1n1p1 /mnt                   # mount root
 mount --mkdir /dev/nvme1n1p2 /mnt/home      # mount home
 mount --mkdir /dev/nvme0n1p1 /mnt/boot/efi  # mount efi
 swapon /dev/nvme1n1p3
 ```
-
 ##### Network (iwd)
 ```
 iwctl device list                                               # => wlan0
 iwctl station wlan0 scan
 iwctl station wlan0 get-networks
-
 iwctl station wlan9 connect <SSID>
 ```
 
@@ -85,8 +63,7 @@ timedatectl set-timezone <value>
 timedatectl set-ntp true
 ```
 
-#### Install
-
+##### Install base packages
 ```
 pacstrap /mnt base base-devel [linux] [linux-headers] linux-lts linux-lts-headers linux-firmware intel-ucode
 ```
@@ -94,16 +71,48 @@ pacstrap /mnt base base-devel [linux] [linux-headers] linux-lts linux-lts-header
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-## Configure
+#### Post instal configuration
 ```
 arch-chroot /mnt
 ```
-#### Install packages
+##### Install packages
 ```
 pacman -Syu
-pacman -S vim iwd dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux wget git
+pacman -S vim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux wget git
+```
+##### Users
+```
+passwd    # root password
+```
+```
+useradd -m -g users -G wheel,root,audio -s /bin/zsh <user>
+passwd <user>
+```
+```
+EDITOR=vim visudo
+# uncomment %wheel ...
+```
+##### GRUB (dualboot)
+```
+pacman -S grub efibootmgr os-prober mtools
+```
+```
+/etc/default/grub
+...
+GRUB_DISABLE_OS_PROBER=false
+```
+```
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+##### Exit
+```
+exit
+umount -lR /mnt
+reboot
 ```
 
+## Configure
 ### Disks
 #### SSD trim
 Check if is TRIM supported:
@@ -133,7 +142,6 @@ UID=xxx-xxx-xxx  /  ext4  rw,realtime,discard  0 1
 ```
 sudo fstrim -v /
 ```
-
 #### Swappiness
 ```
 sysctl vm.swappiness    # default=60
@@ -144,7 +152,6 @@ vm.swappiness=10
 
 sudo reboot
 ```
-
 #### Ext4 tuning
 Use `relatime` attr instead of `noatime`:
 ```
@@ -175,7 +182,6 @@ CHARMAP="UTF-8"
 CODESET="Lat7"
 FONT=ter-u24b.psf.gz
 ```
-
 #### Timezone
 ```
 ln -sf /usr/share/zoneinfo/<Region>/<City> /etc/localtime
@@ -224,23 +230,6 @@ sudo uwf enable
 sudo uwf status
 ```
 
-#### Connect to WiFi (iwd)
-```
-systemctl stop NetworkManager.service
-systemctl enable dhcpcd.service
-systemctl start dhcpcd.service
-systemctl start iwd.service
-```
-```
-iwctl device list                                               # => wlan0
-iwctl station wlan0 scan
-iwctl station wlan0 get-networks
-
-iwctl station wlan9 connect <SSID>
-```
-```
-sudo dhcpd
-```
 #### Connect to WiFi (NetworkManager)
 ```
 systemctl enable dhcpcd.service
@@ -252,40 +241,6 @@ nmcli radio wifi
 nmcli radio wifi on
 nmcli device wifi list
 nmcli device wifi connect "<SSID>" password <password> name "<name>"
-```
-
-#### Users
-```
-passwd    # root password
-```
-```
-useradd -m -g users -G wheel,root,audio -s /bin/zsh <user>
-passwd <user>
-```
-```
-EDITOR=vim visudo
-# uncomment %wheel ...
-```
-
-#### GRUB (dualboot)
-```
-pacman -S grub efibootmgr os-prober mtools
-```
-```
-/etc/default/grub
-...
-GRUB_DISABLE_OS_PROBER=false
-```
-```
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck
-grub-mkconfig -o /boot/grub/grub.cfg
-```
-
-#### Exit
-```
-exit
-umount -lR /mnt
-reboot
 ```
 
 ### Drivers
