@@ -91,6 +91,15 @@ pacman -S vim dhcpcd networkmanager network-manager-applet nm-connection-editor 
 ```
 sudo reflector --verbose --country '<Country>' -l 25 --sort rate --save /etc/pacman.d/mirrorlist
 ```
+```
+/etc/pacman.conf
+
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+```
+```
+pacman -Syl multilib
+```
 #### Users
 ```
 passwd    # root password
