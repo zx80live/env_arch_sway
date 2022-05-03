@@ -439,5 +439,10 @@ avahi-browse --all --ignore-local --resolve --terminate
 sudo pacman -Rns $(pacman -Qtdq)
 ```
 
+##### Mount NTFS
+```
+sudo mount --mkdir -t ntfs3 /dev/<device> /mnt/<target>
+```
+
 ## Issues
 https://github.com/keybase/client/issues/19614
