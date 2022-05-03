@@ -79,7 +79,7 @@ pacstrap /mnt base base-devel [linux] [linux-headers] linux-lts linux-lts-header
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-### System configuration
+### Post install configuration
 ```
 arch-chroot /mnt
 ```
@@ -88,9 +88,6 @@ arch-chroot /mnt
 pacman -Syu
 pacman -S vim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux wget git htop bpytop make
 ```
-
-
-
 #### Users
 ```
 passwd    # root password
@@ -142,36 +139,12 @@ localectl set-locale en_US.UTF-8
 ::1              localhost
 127.0.1.1        <hostname>
 ```
-
-#### Firewall
-```
-sudo pacman -S ufw
-```
-```
-sudo systemctl disable iptables.service
-sudo systemctl enable ufw.service
-sudo ufw status verbose
-
-sudo ufw default deny
-sudo ufw allow from 192.168.0.0/24
-sudo ufw allow <application>
-
-sudo uwf enable
-sudo uwf status
-```
-
 #### Network manager
 ```
 systemctl enable dhcpcd.service
 systemctl enable NetworkManager.service
 ```
-```
-nmcli device status
-nmcli radio wifi
-nmcli radio wifi on
-nmcli device wifi list
-nmcli device wifi connect "<SSID>" password <password> name "<name>"
-```
+
 
 #### GRUB (dualboot)
 ```
@@ -261,6 +234,33 @@ vainfo: Driver version: Intel i965 driver for Intel(R) Coffee Lake - 2.4.1
 exit
 umount -lR /mnt
 reboot
+```
+
+## System configuration
+#### Connect to WiFi
+```
+nmcli device status
+nmcli radio wifi
+nmcli radio wifi on
+nmcli device wifi list
+nmcli --ask device wifi connect "<SSID>" name "<name>"
+```
+
+#### Firewall
+```
+sudo pacman -S ufw
+```
+```
+sudo systemctl disable iptables.service
+sudo systemctl enable ufw.service
+sudo ufw status verbose
+
+sudo ufw default deny
+sudo ufw allow from 192.168.0.0/24
+sudo ufw allow <application>
+
+sudo uwf enable
+sudo uwf status
 ```
 
 ## Install Swaywm
