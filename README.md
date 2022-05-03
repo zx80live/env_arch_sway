@@ -20,6 +20,13 @@ sudo dd bs=4M if=./archlinux.iso of=/dev/sda status=progress oflag=sync
 ```
 setfont ter-u24b
 ```
+##### Network (iwd)
+```
+iwctl device list                                               # => wlan0
+iwctl station wlan0 scan
+iwctl station wlan0 get-networks
+iwctl station wlan9 connect <SSID>
+```
 ##### Partitions (GPT, EFI, dualboot)
 Tools: `fdisk` `cfdisk` `gparted`
 ```
@@ -47,14 +54,6 @@ mount --mkdir /dev/nvme1n1p2 /mnt/home      # mount home
 mount --mkdir /dev/nvme0n1p1 /mnt/boot/efi  # mount efi
 swapon /dev/nvme1n1p3
 ```
-##### Network (iwd)
-```
-iwctl device list                                               # => wlan0
-iwctl station wlan0 scan
-iwctl station wlan0 get-networks
-iwctl station wlan9 connect <SSID>
-```
-
 ##### Update system clock
 ```
 timedatectl status
@@ -62,7 +61,6 @@ timedatectl list-timezones
 timedatectl set-timezone <value>
 timedatectl set-ntp true
 ```
-
 ##### Install base packages
 ```
 pacstrap /mnt base base-devel [linux] [linux-headers] linux-lts linux-lts-headers linux-firmware intel-ucode
