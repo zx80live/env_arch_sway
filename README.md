@@ -88,6 +88,18 @@ arch-chroot /mnt
 pacman -Syu
 pacman -S vim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux wget git htop bpytop make
 ```
+
+##### AUR helper
+```
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+```
+yay -Syy
+```
+
 #### Users
 ```
 passwd    # root password
@@ -252,6 +264,9 @@ vainfo: Driver version: Intel i965 driver for Intel(R) Coffee Lake - 2.4.1
 ```
 
 ##### Printer (Brother)
+```
+yay -S brother-dcpl2550dw
+```
 
 
 #### Exit
@@ -343,16 +358,7 @@ sudo journalctl -p 3 -xb
 sudo pacman -Rns $(pacman -Qtdq)
 ```
 
-##### AUR helper
-```
-sudo pacman -S --needed git base-devel
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-```
-```
-yay -Syy
-```
+
 
 
 ### Disk utilities
