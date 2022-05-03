@@ -219,7 +219,15 @@ cat /sys/block/nvme1n1/queue/scheduler
 ```
 For NVME the `none` scheduler is better choise because the NVME's parallelism is used
 
-#### Drivers
+#### Graphics drivers
+##### List graphics card
+```
+lspci -v|grep -i vga
+```
+##### List loaded graphics drivers
+```
+lsmod|grep -i vid
+```
 ##### Intel
 ```
 pacman -S mesa libva-intel-driver libva-utils
@@ -229,6 +237,11 @@ vainfo
 ...
 vainfo: Driver version: Intel i965 driver for Intel(R) Coffee Lake - 2.4.1
 ...
+```
+```
+lsmod|grep -i vid
+...
+video                  57344  3 thinkpad_acpi,i915,nouvea  # driver is loaded
 ```
 
 
