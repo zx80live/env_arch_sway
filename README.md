@@ -219,12 +219,17 @@ cat /sys/block/nvme1n1/queue/scheduler
 ```
 For NVME the `none` scheduler is better choise because the NVME's parallelism is used
 
-#### Graphics drivers
-##### List graphics card
+#### Audio
+```
+pacman -S pipewire lib32-pipewire pipewire-jack lib32-pipewire-jack pipewire-alsa pipewire-pulse pipewire-media-session xdg-desktop-portal-wlr alsa alsa-utils helvum
+```
+
+#### Video drivers
+##### List graphics cards
 ```
 lspci -v|grep -i vga
 ```
-##### List loaded graphics drivers
+##### List loaded video drivers
 ```
 lsmod|grep -i vid
 ```
@@ -296,6 +301,8 @@ makepkg -si
 ```
 yay -Syy
 ```
+
+
 
 ## Install Swaywm
 ##### Packages
