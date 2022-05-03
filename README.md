@@ -12,6 +12,14 @@ Memory: 3420MiB / 39762MiB
 ```
 ## Create bootable USB
 ```
+lsblk
+
+NAME        MAJ:MIN RM   SIZE RO TYPE 
+sda           8:16   0 931.5G  0 disk  # target usb flash
+└─ sda1       8:17   0 931.5G  0 part  
+...
+```
+```
 sudo dd bs=4M if=./archlinux.iso of=/dev/sda status=progress oflag=sync
 ```
 
