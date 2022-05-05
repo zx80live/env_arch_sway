@@ -370,6 +370,28 @@ export QT_QPA_PLATFORM="wayland;xcb"
 export _JAVA_AWT_WM_NONREPARENTING=1
 ```
 
+### .config/sway/env
+https://github.com/swaywm/sway/wiki
+```
+export DISPLAY=":0.0"
+export WAYLAND_DISPLAY=wayland-0
+#export XDG_RUNTIME_DIR=/run/user/1000
+export XDG_SESSION_TYPE=wayland
+export SDL_VIDEODRIVER=wayland
+export QT_QPA_PLATFORM=wayland-egl
+export ELM_DISPLAY=wl
+export ECORE_EVAS_ENGINE=wayland_egl
+export ELM_ENGINE=wayland_egl
+export ELM_ACCEL=opengl
+#export GDK_BACKEND=wayland
+unset GDK_BACKEND
+export DBUS_SESSION_BUS_ADDRESS
+export DBUS_SESSION_BUS_PID
+export MOZ_ENABLE_WAYLAND=1
+unset WAYLAND_DISPLAY
+export GTK_USE_PORTAL=0
+```
+
 ### Chromium
 ```
 echo "alias chromium='chromium --enable-features=UseOzonePlatform --ozone-platform=wayland'" >> ~/.zshenv
