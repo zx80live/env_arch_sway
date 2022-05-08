@@ -328,7 +328,7 @@ yay -Syy
 ## Install Swaywm
 ##### Packages
 ```
-pacman -S sway swaylock swayidle wofi wl-clipboard wf-recorder zenity brightnessctl waybar slurp grim 
+pacman -S sway swaylock swayidle wofi wl-clipboard wf-recorder zenity brightnessctl waybar slurp grim xorg-wayland
 ```
 ##### Autostart
 ```
@@ -368,41 +368,18 @@ about:config
 full-screen-api.ignore-widgets=true  # allows to keep container size in fullscreen mode
 ui.systemUsesDarkTheme=1
 ```
-
-### Media
-
-### Wayland
+### Intellij IDEA
 ```
-pacman -S qt6-wayland qt5ct
+pacman -S xorg-wayland
 ```
 ```
-~/.zshenv
-...
-export QT_QPA_PLATFORM="wayland;xcb"
+echo "xwayland enable" >> ~/.config/sway/config
+```
+```
 export _JAVA_AWT_WM_NONREPARENTING=1
 ```
 
-### .config/sway/env
-https://github.com/swaywm/sway/wiki
-```
-export DISPLAY=":0.0"
-export WAYLAND_DISPLAY=wayland-0
-#export XDG_RUNTIME_DIR=/run/user/1000
-export XDG_SESSION_TYPE=wayland
-export SDL_VIDEODRIVER=wayland
-export QT_QPA_PLATFORM=wayland-egl
-export ELM_DISPLAY=wl
-export ECORE_EVAS_ENGINE=wayland_egl
-export ELM_ENGINE=wayland_egl
-export ELM_ACCEL=opengl
-#export GDK_BACKEND=wayland
-unset GDK_BACKEND
-export DBUS_SESSION_BUS_ADDRESS
-export DBUS_SESSION_BUS_PID
-export MOZ_ENABLE_WAYLAND=1
-unset WAYLAND_DISPLAY
-export GTK_USE_PORTAL=0
-```
+### Media
 
 ### Chromium
 ```
