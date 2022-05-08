@@ -71,6 +71,13 @@ timedatectl list-timezones
 timedatectl set-timezone <value>
 timedatectl set-ntp true
 ```
+##### Select fast mirror
+```
+pacman -S reflector
+```
+```
+sudo reflector --verbose --country '<Country>' -l 25 --sort rate --save /etc/pacman.d/mirrorlist
+```
 ### Install base packages
 ```
 pacstrap /mnt base base-devel [linux] [linux-headers] linux-lts linux-lts-headers linux-firmware intel-ucode
