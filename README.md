@@ -368,6 +368,9 @@ about:config
 full-screen-api.ignore-widgets=true  # allows to keep container size in fullscreen mode
 ui.systemUsesDarkTheme=1
 ```
+```
+set font: san scherif
+```
 ### Intellij IDEA
 ```
 pacman -S xorg-wayland
