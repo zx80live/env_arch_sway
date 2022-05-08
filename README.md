@@ -376,7 +376,7 @@ pacman -S xorg-wayland
 echo "xwayland enable" >> ~/.config/sway/config
 ```
 ```
-export _JAVA_AWT_WM_NONREPARENTING=1
+echo "export _JAVA_AWT_WM_NONREPARENTING=1" >> ~/.zshenv
 ```
 
 ### Media
