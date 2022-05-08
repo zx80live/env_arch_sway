@@ -292,7 +292,7 @@ nmcli device status
 nmcli radio wifi
 nmcli radio wifi on
 nmcli device wifi list
-nmcli --ask device wifi connect "<SSID>" name "<name>"
+sudo nmcli --ask device wifi connect "<SSID>" name "<name>"
 ```
 
 #### Firewall
