@@ -399,7 +399,9 @@ pacman -S gajim
 pacman -S telegram-desktop
 ```
 ##### Zoom
-
+```
+yay -S zoom
+```
 
 
 ## Utils
