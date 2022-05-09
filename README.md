@@ -345,6 +345,23 @@ yay -S font-manager ttf-meslo-nerd-font-powerlevel10k nerd-fonts-terminus nerd-f
 ```
 
 ### Terminal
+#### Kitty
+```
+pacman -S kitty
+```
+#### Ranger
+```
+pacman -S ranger
+```
+```
+ranger --copy-config=all
+```
+```
+~/.config/ranger/rc.conf
+set preview_images true
+set preview_images_method kitty
+```
+#### Alacritty
 ```
 pacman -S alacritty
 ```
@@ -352,6 +369,7 @@ pacman -S alacritty
 mkdir ~/.config/alacritty
 cp /usr/share/doc/alacritty/example/alacritty.yml ~/.config/alacritty/alacritty.yml
 ```
+#### Powerlevel10k
 ```
 yay -S --noconfirm zsh-theme-powerlevel10k-git
 echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
