@@ -527,3 +527,17 @@ systemd-analyze blame
 
 ## Issues
 https://github.com/keybase/client/issues/19614
+
+## Dev
+### C++
+##### Packages
+```
+pacman -S gcc base-devel glibc make binutils
+```
+##### Compile and run
+```
+g++ test.cpp && make test && ./test
+```
+```
+g++ -std=c++11 -O2 -Wall test.cpp -o test
+```
