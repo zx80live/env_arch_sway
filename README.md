@@ -1,5 +1,9 @@
 # env_arch_sway
 Guide to setup environment based on Arch Linux and Swaywm for particular hardware config (see Hardware section).
+
+
+## Table of contents
+
    * [Hardware](#hardware)
    * [Install Arch](#install-arch)
       * [Prepare installation](#prepare-installation)
@@ -89,7 +93,7 @@ GPU: NVIDIA Quadro T1000 Mobile
 GPU: Intel CoffeeLake-H GT2 [UHD Graphics 630]
 Memory: 3420MiB / 39762MiB
 ```
-
+[[^]](#table-of-contents)
 
 ## Install Arch
 ### Prepare installation
@@ -105,10 +109,12 @@ sda           8:16   0 931.5G  0 disk  # target usb flash
 ```
 sudo dd bs=4M if=./archlinux.iso of=/dev/sda status=progress oflag=sync
 ```
+[[^]](#table-of-contents)
 ##### Change console font
 ```
 setfont ter-u24b
 ```
+[[^]](#table-of-contents)
 ##### Network (iwd)
 ```
 iwctl device list                                               # => wlan0
@@ -116,6 +122,7 @@ iwctl station wlan0 scan
 iwctl station wlan0 get-networks
 iwctl station wlan0 connect <SSID>
 ```
+[[^]](#table-of-contents)
 ##### Partitions (GPT, EFI, dualboot)
 Tools: `fdisk` `cfdisk` `gparted`
 ```
@@ -136,6 +143,7 @@ mkfs.ext4 /dev/nvme1n1p1  # format root partition
 mkfs.ext4 /dev/nvme1n1p2  # [Optional] format home partition if needs
 mkswap /dev/nvme1n1p3
 ```
+[[^]](#table-of-contents)
 ##### Mount
 ```
 mount /dev/nvme1n1p1 /mnt                   # mount root
@@ -143,6 +151,7 @@ mount --mkdir /dev/nvme1n1p2 /mnt/home      # mount home
 mount --mkdir /dev/nvme0n1p1 /mnt/boot/efi  # mount efi
 swapon /dev/nvme1n1p3
 ```
+[[^]](#table-of-contents)
 ##### Update system clock
 ```
 timedatectl status
@@ -150,6 +159,7 @@ timedatectl list-timezones
 timedatectl set-timezone <value>
 timedatectl set-ntp true
 ```
+[[^]](#table-of-contents)
 ##### Select fast mirror
 ```
 pacman -S reflector
@@ -157,6 +167,7 @@ pacman -S reflector
 ```
 sudo reflector --verbose --country '<Country>' -l 25 --sort rate --save /etc/pacman.d/mirrorlist
 ```
+[[^]](#table-of-contents)
 ### Install base packages
 ```
 pacstrap /mnt base base-devel [linux] [linux-headers] linux-lts linux-lts-headers linux-firmware intel-ucode
@@ -164,11 +175,12 @@ pacstrap /mnt base base-devel [linux] [linux-headers] linux-lts linux-lts-header
 ```
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
-
+[[^]](#table-of-contents)
 ### Post install configuration
 ```
 arch-chroot /mnt
 ```
+[[^]](#table-of-contents)
 #### Install common packages
 ```
 pacman -Syu
@@ -186,6 +198,7 @@ Include = /etc/pacman.d/mirrorlist
 ```
 pacman -Syl multilib
 ```
+[[^]](#table-of-contents)
 #### Users
 ```
 passwd    # root password
@@ -198,6 +211,7 @@ passwd <user>
 EDITOR=vim visudo
 # uncomment %wheel ...
 ```
+[[^]](#table-of-contents)
 #### Console font
 ```
 pacman -S terminus-font
@@ -210,6 +224,7 @@ CHARMAP="UTF-8"
 CODESET="Lat7"
 FONT=ter-u24b.psf.gz
 ```
+[[^]](#table-of-contents)
 #### Timezone
 ```
 ln -sf /usr/share/zoneinfo/<Region>/<City> /etc/localtime
@@ -217,13 +232,14 @@ ln -sf /usr/share/zoneinfo/<Region>/<City> /etc/localtime
 ```
 hwclock --systohc
 ```
+[[^]](#table-of-contents)
 #### Locale
 ```
 vim /etc/locale.gen
 locale-gen
 localectl set-locale en_US.UTF-8
 ```
-
+[[^]](#table-of-contents)
 #### Network
 ```
 /etc/hostname
@@ -237,19 +253,21 @@ localectl set-locale en_US.UTF-8
 ::1              localhost
 127.0.1.1        <hostname>
 ```
+[[^]](#table-of-contents)
 #### Network manager
 ```
 systemctl enable dhcpcd.service
 systemctl enable NetworkManager.service
 systemctl mask NetworkManager-wain-online.service
 ```
-
+[[^]](#table-of-contents)
 
 #### GRUB (dualboot)
 ##### Remove previous grub entries (if necessary)
 ```
 ls /boot/efi/EFI
 ```
+[[^]](#table-of-contents)
 ##### GRUB install
 ```
 pacman -S grub efibootmgr os-prober mtools
@@ -263,6 +281,7 @@ GRUB_DISABLE_OS_PROBER=false
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+[[^]](#table-of-contents)
 #### Disks
 ##### SSD trim
 Check if is TRIM supported:
@@ -274,12 +293,13 @@ nvmeX    512B     2T           # if values > 0 then TRIM is supported
 ...
 ```
 Use one of **periodical** (recommended) or **continuous** TRIM
-
+[[^]](#table-of-contents)
 ##### SSD trim (periodical)
 ```
 sudo systemctl enable fstrim.timer
 sudo systemctl start fstrim.timer
 ```
+[[^]](#table-of-contents)
 ##### SSD trim (continuous)
 Add `discard` option to mount
 ```
@@ -288,10 +308,12 @@ Add `discard` option to mount
 UID=xxx-xxx-xxx  /  ext4  rw,realtime,discard  0 1
 ...
 ```
+[[^]](#table-of-contents)
 ##### SSD trim (manual)
 ```
 sudo fstrim -v /
 ```
+[[^]](#table-of-contents)
 ##### Swappiness
 ```
 sysctl vm.swappiness    # default=60
@@ -302,6 +324,7 @@ vm.swappiness=10
 
 sudo reboot
 ```
+[[^]](#table-of-contents)
 ##### Ext4 tuning
 Use `relatime` attr instead of `noatime`:
 ```
@@ -310,7 +333,7 @@ Use `relatime` attr instead of `noatime`:
 UUID=xxx-xxx-xxx  / ext4 rw,relatime 0 1
 ...
 ```
-
+[[^]](#table-of-contents)
 ##### IO Scheduler
 ```
 cat /sys/block/nvme1n1/queue/scheduler
