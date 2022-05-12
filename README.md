@@ -341,21 +341,23 @@ cat /sys/block/nvme1n1/queue/scheduler
 [none] mq-deadline kyber bfq               # none value is selected by default
 ```
 For NVME the `none` scheduler is better choise because the NVME's parallelism is used
-
+[[^]](#table-of-contents)
 #### Audio
 ```
 
 ```
-
+[[^]](#table-of-contents)
 #### Video drivers
 ##### List graphics cards
 ```
 lspci -v|grep -i vga
 ```
+[[^]](#table-of-contents)
 ##### List loaded video drivers
 ```
 lsmod|grep -i vid
 ```
+[[^]](#table-of-contents)
 ##### Intel
 ```
 pacman -S mesa libva-intel-driver libva-utils intel-gpu-tools
@@ -377,7 +379,7 @@ mpv --hwdec=auto <videofile>   # test hardware decoder
 ```
 sudo intel_gpu_top             # view GPU activity
 ```
-
+[[^]](#table-of-contents)
 
 
 #### Exit
@@ -386,7 +388,7 @@ exit
 umount -lR /mnt
 reboot
 ```
-
+[[^]](#table-of-contents)
 ## System configuration
 #### Connect to WiFi
 ```
@@ -396,7 +398,7 @@ nmcli radio wifi on
 nmcli device wifi list
 sudo nmcli --ask device wifi connect "<SSID>" name "<name>"
 ```
-
+[[^]](#table-of-contents)
 #### Firewall
 ```
 sudo pacman -S ufw
@@ -414,7 +416,7 @@ sudo ufw allow <application>
 sudo uwf enable
 sudo uwf status
 ```
-
+[[^]](#table-of-contents)
 #### AUR helper
 ```
 git clone https://aur.archlinux.org/yay.git
@@ -424,7 +426,7 @@ makepkg -si
 ```
 yay -Syy
 ```
-
+[[^]](#table-of-contents)
 
 
 ## Install Swaywm
@@ -440,17 +442,18 @@ if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
   sway
 fi
 ```
-
+[[^]](#table-of-contents)
 ### Fonts
 ```
 yay -S font-manager ttf-meslo-nerd-font-powerlevel10k nerd-fonts-terminus nerd-fonts-source-code-pro
 ```
-
+[[^]](#table-of-contents)
 ### Terminal
 #### Kitty
 ```
 pacman -S kitty
 ```
+[[^]](#table-of-contents)
 #### Ranger
 ```
 pacman -S ranger
@@ -463,6 +466,7 @@ ranger --copy-config=all
 set preview_images true
 set preview_images_method kitty
 ```
+[[^]](#table-of-contents)
 #### Alacritty
 ```
 pacman -S alacritty
@@ -471,6 +475,7 @@ pacman -S alacritty
 mkdir ~/.config/alacritty
 cp /usr/share/doc/alacritty/example/alacritty.yml ~/.config/alacritty/alacritty.yml
 ```
+[[^]](#table-of-contents)
 #### Powerlevel10k
 ```
 yay -S --noconfirm zsh-theme-powerlevel10k-git
@@ -479,6 +484,7 @@ echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zs
 ```
 p10k configure
 ```
+[[^]](#table-of-contents)
 ### Firefox
 ```
 echo "export MOZ_ENABLE_WAYLAND=1" >> ~/.zshenv
@@ -491,6 +497,7 @@ ui.systemUsesDarkTheme=1
 ```
 set font: san scherif
 ```
+[[^]](#table-of-contents)
 ### Intellij IDEA
 ```
 pacman -S xorg-wayland
@@ -501,28 +508,30 @@ echo "xwayland enable" >> ~/.config/sway/config
 ```
 echo "export _JAVA_AWT_WM_NONREPARENTING=1" >> ~/.zshenv
 ```
-
+[[^]](#table-of-contents)
 ### Media
 
 ### Chromium
 ```
 echo "alias chromium='chromium --enable-features=UseOzonePlatform --ozone-platform=wayland'" >> ~/.zshenv
 ```
-
+[[^]](#table-of-contents)
 ### IM
 ##### XMPP
 ````
 pacman -S gajim
 ````
+[[^]](#table-of-contents)
 ##### Telegram
 ```
 pacman -S telegram-desktop
 ```
+[[^]](#table-of-contents)
 ##### Zoom
 ```
 yay -S zoom
 ```
-
+[[^]](#table-of-contents)
 
 ## Utils
 ### Services
@@ -531,7 +540,7 @@ yay -S zoom
 sudo systemctl --failed
 sudo journalctl -p 3 -xb
 ```
-
+[[^]](#table-of-contents)
 
 
 
@@ -540,7 +549,7 @@ sudo journalctl -p 3 -xb
 ### Disk utilities
 ##### Show storages and partitions
 `lsblk` `fdisk -l`
-
+[[^]](#table-of-contents)
 ##### Remove unused EFI entries
 ```
 # show EFI entries
@@ -555,7 +564,7 @@ Boot0003  ubuntu                  <-- need to be removed
 # remove ubuntu EFI entry
 sudo efibootmgr -b 3 -B
 ```
-
+[[^]](#table-of-contents)
 ##### Restore EFI entries
 The following initial entries are used in the current config and should be restored from backup.
 ```
@@ -580,7 +589,7 @@ tree /mnt/efi-partition
               └── BCD
               ...
 ```
-
+[[^]](#table-of-contents)
 ### Backup
 
 ## HowTo
@@ -589,11 +598,12 @@ tree /mnt/efi-partition
 sudo modprobe -r psmouse
 sudo modprobe psmouse
 ```
-
+[[^]](#table-of-contents)
 ##### Print environment variables
 ```
 printenv
 ```
+[[^]](#table-of-contents)
 ##### Printer (Brother)
 ```
 yay -S brother-dcpl2550dw
@@ -611,31 +621,33 @@ sudo ufw allow 5353/udp
 # browse network devices including wi-fi printers (will be availabled after reboot)
 avahi-browse --all --ignore-local --resolve --terminate
 ```
+[[^]](#table-of-contents)
 ### Pacman
 ##### Remove orphans
 ```
 sudo pacman -Rns $(pacman -Qtdq)
 ```
-
+[[^]](#table-of-contents)
 ##### Mount NTFS
 ```
 sudo mount --mkdir -t ntfs3 /dev/<device> /mnt/<target>
 ```
-
+[[^]](#table-of-contents)
 #### Analyze systemd
 ```
 systemd-analyze blame
 ```
-
+[[^]](#table-of-contents)
 ## Issues
 https://github.com/keybase/client/issues/19614
-
+[[^]](#table-of-contents)
 ## Dev
 ### C++
 ##### Packages
 ```
 pacman -S gcc base-devel glibc make binutils
 ```
+[[^]](#table-of-contents)
 ##### Compile and run
 ```
 g++ test.cpp && make test && ./test
@@ -643,3 +655,4 @@ g++ test.cpp && make test && ./test
 ```
 g++ -std=c++11 -O2 -Wall test.cpp -o test
 ```
+[[^]](#table-of-contents)
