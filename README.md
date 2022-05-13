@@ -647,6 +647,10 @@ pacman -S nvim python-pynvim
 ```
 yay -S vim-plug
 ```
+```
+nvim
+:PlugInstall
+```
 ### C++
 ##### Packages
 ```
