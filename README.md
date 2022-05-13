@@ -647,6 +647,10 @@ pacman -S nvim python-pynvim
 ```
 yay -S nvim-packer-git
 ```
+```
+nvim
+:PackerInstall
+```
 ### C++
 ##### Packages
 ```
