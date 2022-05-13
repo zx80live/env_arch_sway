@@ -640,6 +640,13 @@ systemd-analyze blame
 https://github.com/keybase/client/issues/19614
 [[^]](#table-of-contents)
 ## Dev
+### Neovim
+```
+pacman -S nvim python-pynvim
+```
+```
+yay -S nvim-packer-git
+```
 ### C++
 ##### Packages
 ```
