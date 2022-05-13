@@ -645,11 +645,7 @@ https://github.com/keybase/client/issues/19614
 pacman -S nvim python-pynvim
 ```
 ```
-yay -S vim-plug
-```
-```
-nvim
-:PlugInstall
+yay -S nvim-packer-git
 ```
 ### C++
 ##### Packages
