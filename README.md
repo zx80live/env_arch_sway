@@ -647,6 +647,7 @@ pacman -S nvim python-pynvim
 ```
 ```
 echo "alias vim=nvim" >> ~/.zshenv
+echo "EDITOR=nvim" >> ~/.zshenv
 ```
 ```
 yay -S nvim-packer-git
