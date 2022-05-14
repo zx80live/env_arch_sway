@@ -645,7 +645,7 @@ https://github.com/keybase/client/issues/19614
 pacman -S nvim python-pynvim
 ```
 ```
-yay -S nvim-packer-git neovim-airline
+yay -S nvim-packer-git
 ```
 ```
 nvim
