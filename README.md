@@ -183,7 +183,7 @@ arch-chroot /mnt
 #### Install common packages
 ```
 pacman -Syu
-pacman -S vim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux rsync wget curl git htop bpytop make ranger reflector
+pacman -S nvim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux rsync wget curl git htop bpytop make ranger reflector
 ```
 ```
 sudo reflector --verbose --country '<Country>' -l 25 --sort rate --save /etc/pacman.d/mirrorlist
@@ -644,6 +644,9 @@ https://github.com/keybase/client/issues/19614
 ### Neovim
 ```
 pacman -S nvim python-pynvim
+```
+```
+echo "alias vim=nvim" >> ~/.zshenv
 ```
 ```
 yay -S nvim-packer-git
