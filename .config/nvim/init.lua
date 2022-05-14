@@ -1,4 +1,4 @@
-vim.cmd [[packadd packer.nvim]]
+eim.cmd [[packadd packer.nvim]]
 
 
 local function map(mode, lhs, rhs, opts)
@@ -35,8 +35,8 @@ return require('packer').startup(function()
   vim.o.hlsearch = true
   vim.o.incsearch = true
   -- clipboard
-  vim.o.clipboard = unnamedplus
-  map("v", "<C-c>", '"+y')
+  --vim.o.clipboard = unnamedplus
+  map("v", "<C-c>", '"*y')
 
 
   -- [appearance]
@@ -49,3 +49,5 @@ return require('packer').startup(function()
 
 
 end)
+
+
