@@ -78,6 +78,7 @@ Guide to setup environment based on Arch Linux and Swaywm for particular hardwar
    * [Analyze systemd](#analyze-systemd)
 * [Issues](#issues)
 * [Dev](#dev)
+   * [Neovim](#neovim)
    * [C++](#c)
       * [Packages](#packages-1)
       * [Compile and run](#compile-and-run)
@@ -651,6 +652,7 @@ yay -S nvim-packer-git
 nvim
 :PackerInstall
 ```
+[[^]](#table-of-contents)
 ### C++
 ##### Packages
 ```
