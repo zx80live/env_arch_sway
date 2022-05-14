@@ -484,6 +484,16 @@ echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zs
 p10k configure
 ```
 [[^]](#table-of-contents)
+#### ZshCompletions
+```
+~/.zshrc
+...
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select
+zstyle ':completion::complete:*' gain-privileges 1
+```
+[[^]](#table-of-contents)
 ### Firefox
 ```
 echo "export MOZ_ENABLE_WAYLAND=1" >> ~/.zshenv
