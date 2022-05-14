@@ -15,6 +15,10 @@ return require('packer').startup(function()
   use {'joshdick/onedark.vim', as = 'onedark'}
 
   use 'airblade/vim-gitgutter'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 
   -- [main]
   vim.o.expandtab = true
@@ -40,6 +44,8 @@ return require('packer').startup(function()
   vim.o.number = true
   vim.cmd [[syntax on]]
   vim.cmd [[colorscheme onedark]]
+
+  require('lualine').setup()
 
 
 end)
