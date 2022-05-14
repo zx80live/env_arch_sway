@@ -1,4 +1,4 @@
-eim.cmd [[packadd packer.nvim]]
+vim.cmd [[packadd packer.nvim]]
 
 
 local function map(mode, lhs, rhs, opts)
@@ -27,7 +27,7 @@ return require('packer').startup(function()
   vim.o.shiftwidth = 2
   vim.o.autoindent = true
   vim.o.wildmenu = true
-  vim.o.mouse = a
+  vim.cmd [[set mouse=a]]
   vim.o.ffs = unix,dos,mac -- symbol of the next line
   -- search
   vim.o.ignorecase = true
