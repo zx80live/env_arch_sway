@@ -35,7 +35,7 @@ return require('packer').startup(function()
   vim.o.hlsearch = true
   vim.o.incsearch = true
   -- clipboard
-  --vim.o.clipboard = unnamedplus
+  vim.cmd [[set clipboard+=unnamedplus]]
   map("v", "<C-c>", '"*y')
 
 
