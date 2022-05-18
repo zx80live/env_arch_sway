@@ -639,7 +639,10 @@ sudo pacman -Rns $(pacman -Qtdq)
 [[^]](#table-of-contents)
 ##### Mount NTFS
 ```
-sudo mount --mkdir -t ntfs3 /dev/<device> /mnt/<target>
+pacman -S ntfs-3g
+```
+```
+sudo mount --mkdir -t ntfs-3g /dev/<device> /mnt/<target>
 ```
 [[^]](#table-of-contents)
 #### Analyze systemd
