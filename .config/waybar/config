@@ -1,0 +1,91 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 16,
+    "margin": 0,
+    "padding": 0,
+
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["pulseaudio", "network", "battery", "tray", "sway/language", "custom/clock", "custom/power"],
+
+    "sway/window": {
+        "format": "{}",
+        "max-length": 170,
+        "rewrite": {
+           "(.*)": "$1",
+           "vim(.*)": " $1",
+           "nvim(.*)": " $1",
+           "ranger(.*)": "   ranger"
+        }
+    },
+    "sway/taskbar": {
+        "format": ""
+
+    },
+    "custom/logo": {
+      "format": "{icon}",
+      "format-icons": [""]
+    },
+
+    "network": {
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "format-ethernet": "  {ipaddr}/{cidr}",
+        "tooltip-format": "  {ifname} via {gwaddr}",
+        "format-linked": "  {ifname} (No IP)",
+        "format-disconnected": "⚠  Disconnected",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "custom/clock": {
+        "exec": "date +'%H:%M:%S'",
+        "interval":1,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "on-click": "zenity --calendar"
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": " {icon} {volume}% {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": "{icon} {format_source}",
+        "format-muted": "  {format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/power": {
+      "format": "{icon}",
+      "format-icons": ["⏻"],
+      "on-click": "$(if zenity --question --text 'Power off'; then systemctl poweroff; fi)"
+    }
+
+}
+
