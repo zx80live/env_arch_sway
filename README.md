@@ -447,6 +447,12 @@ fi
 yay -S font-manager ttf-meslo-nerd-font-powerlevel10k nerd-fonts-terminus nerd-fonts-source-code-pro
 ```
 [[^]](#table-of-contents)
+### Displays
+#### Multimonitors
+```
+pacman -S wdisplays
+```
+
 ### Terminal
 #### Kitty
 ```
