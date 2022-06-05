@@ -452,6 +452,7 @@ yay -S font-manager ttf-meslo-nerd-font-powerlevel10k nerd-fonts-terminus nerd-f
 ```
 pacman -S wdisplays
 ```
+[[^]](#table-of-contents)
 
 ### Terminal
 #### Kitty
