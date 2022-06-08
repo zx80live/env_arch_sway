@@ -357,3 +357,6 @@ swaymsg -t get_tree |
            read -r id name
            swaymsg "[con_id=$id]" focus
        }
+
+for_window [title="watch_lsblk"] floating enable; resize set 800 500
+bindsym $mod+Shift+u exec "kitty --title watch_lsblk -e watch lsblk"
