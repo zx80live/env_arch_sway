@@ -459,6 +459,11 @@ pacman -S wdisplays
 ```
 pacman -S kitty
 ```
+```
+~/.conf/kitty/kitty.conf
+...
+confirm_os_window_close 0
+```
 [[^]](#table-of-contents)
 #### Ranger
 ```
