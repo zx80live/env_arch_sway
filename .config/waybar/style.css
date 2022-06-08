@@ -92,6 +92,7 @@ window#waybar.chromium {
 #network,
 #pulseaudio,
 #custom-media,
+#custom-usb,
 #tray,
 #mode,
 #idle_inhibitor,
@@ -182,6 +183,12 @@ label:focus {
 }
 
 #custom-media.custom-vlc {
+}
+
+#custom-usb {
+  border-right: solid 1px #2e2e2e;
+  padding-right: 25px;
+  margin-right: 5px;
 }
 
 #temperature {
