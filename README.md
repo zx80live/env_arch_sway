@@ -709,5 +709,6 @@ systemctl status docker
 ```
 groupadd docker
 usermod -aG docker ${USER}
+newgrp docker
 ```
 [[^]](#table-of-contents)
