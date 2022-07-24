@@ -699,3 +699,15 @@ g++ test.cpp && make test && ./test
 g++ -std=c++11 -O2 -Wall test.cpp -o test
 ```
 [[^]](#table-of-contents)
+### Docker
+#### Install
+```
+pacman -S docker
+systemctl start docker
+systemctl status docker
+```
+```
+groupadd docker
+usermod -aG docker ${USER}
+```
+[[^]](#table-of-contents)
