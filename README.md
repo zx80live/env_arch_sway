@@ -489,6 +489,9 @@ cp /usr/share/doc/kitty/kitty.conf ~/.config/kitty/kitty.conf
 ```
 ~/.conf/kitty/kitty.conf
 ...
+font_family MesloLGS NF
+font_size 14.0
+...
 confirm_os_window_close 0
 ```
 [[^]](#table-of-contents)
