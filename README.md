@@ -494,6 +494,9 @@ font_size 14.0
 ...
 confirm_os_window_close 0
 ```
+```
+kitty +kitten themes
+```
 [[^]](#table-of-contents)
 #### Ranger
 ```
