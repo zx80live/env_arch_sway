@@ -524,13 +524,15 @@ set font: san scherif
 [[^]](#table-of-contents)
 ### Intellij IDEA
 ```
+echo "export _JAVA_AWT_WM_NONREPARENTING=1" >> ~/.zshenv
+```
+```
+# deprecated (don't used in new sway version)
 pacman -S xorg-wayland
 ```
 ```
+# deprecated (don't used in new sway version)
 echo "xwayland enable" >> ~/.config/sway/config
-```
-```
-echo "export _JAVA_AWT_WM_NONREPARENTING=1" >> ~/.zshenv
 ```
 [[^]](#table-of-contents)
 ### Media
