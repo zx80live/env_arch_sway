@@ -587,6 +587,9 @@ pacman -S telegram-desktop
 ```
 yay -S zoom
 ```
+```
+env -u XDG_SESSION_TYPE QT_QPA_PLATFORM=wayland-egl zoom
+```
 [[^]](#table-of-contents)
 
 ## Utils
