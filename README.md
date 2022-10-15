@@ -484,6 +484,9 @@ pacman -S wdisplays
 pacman -S kitty
 ```
 ```
+cp /usr/share/doc/kitty/kitty.conf ~/.config/kitty/kitty.conf
+```
+```
 ~/.conf/kitty/kitty.conf
 ...
 confirm_os_window_close 0
