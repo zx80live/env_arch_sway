@@ -347,7 +347,7 @@ For NVME the `none` scheduler is better choise because the NVME's parallelism is
 [[^]](#table-of-contents)
 #### Audio
 ```
-pacman -S pulseaudio pavucontrol
+pacman -S pulseaudio pavucontrol mpv
 ```
 [[^]](#table-of-contents)
 #### Video drivers
