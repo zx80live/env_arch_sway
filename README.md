@@ -183,7 +183,7 @@ arch-chroot /mnt
 #### Install common packages
 ```
 pacman -Syu
-pacman -S nvim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux rsync wget curl git htop bpytop make ranger reflector
+pacman -S neovim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux rsync wget curl git htop bpytop make ranger reflector
 ```
 ```
 sudo reflector --verbose --country '<Country>' -l 25 --sort rate --save /etc/pacman.d/mirrorlist
@@ -429,6 +429,19 @@ makepkg -si
 yay -Syy
 ```
 [[^]](#table-of-contents)
+
+#### nvim
+```
+pacman -S neovim
+```
+```
+yay -S nvim-packer-git
+```
+```
+nvim
+:PackerInstall
+:q
+```
 
 
 ## Install Swaywm
