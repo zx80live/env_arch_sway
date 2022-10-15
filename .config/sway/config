@@ -350,13 +350,14 @@ bindsym $mod+Shift+y exec firefox "youtube.com/results?search_query=$(wl-paste)"
 # pacman -S jq
 bindsym Alt+Tab exec ""
 
-swaymsg -t get_tree |
-         jq -r '.nodes[].nodes[] | if .nodes then [recurse(.nodes[])] else [] end + .floating_nodes  |
-       .[] | select(.nodes==[]) | ((.id | tostring) + "" + .name)' |
-         wofi --show dmenu | {
-           read -r id name
-           swaymsg "[con_id=$id]" focus
-       }
+# deprecated
+#swaymsg -t get_tree |
+#         jq -r '.nodes[].nodes[] | if .nodes then [recurse(.nodes[])] else [] end + .floating_nodes  |
+#       .[] | select(.nodes==[]) | ((.id | tostring) + "" + .name)' |
+#         wofi --show dmenu | {
+#           read -r id name
+#           swaymsg "[con_id=$id]" focus
+#       }
 
 for_window [title="watch_lsblk"] floating enable; resize set 800 500
 bindsym $mod+Shift+u exec "kitty --title watch_lsblk -e watch lsblk"
