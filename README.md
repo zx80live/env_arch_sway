@@ -447,7 +447,11 @@ fi
 [[^]](#table-of-contents)
 ### Fonts
 ```
+# deprecated
 yay -S font-manager ttf-meslo-nerd-font-powerlevel10k nerd-fonts-terminus nerd-fonts-source-code-pro
+```
+```
+yay -S font-manager ttf-meslo-nerd-font-powerlevel10k nerd-fonts-complete
 ```
 [[^]](#table-of-contents)
 ### Displays
