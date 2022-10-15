@@ -43,6 +43,7 @@ Guide to setup environment based on Arch Linux and Swaywm for particular hardwar
    * [Connect to WiFi](#connect-to-wifi)
    * [Firewall](#firewall)
    * [AUR helper](#aur-helper)
+   * [nvim](#nvim)
 * [Install Swaywm](#install-swaywm)
    * [Packages](#packages)
    * [Autostart](#autostart)
@@ -442,7 +443,10 @@ nvim
 :PackerInstall
 :q
 ```
-
+```
+echo "alias vim=nvim" >> ~/.zshenv
+```
+[[^]](#table-of-contents)
 
 ## Install Swaywm
 ##### Packages
