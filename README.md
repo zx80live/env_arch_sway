@@ -434,7 +434,7 @@ yay -Syy
 ## Install Swaywm
 ##### Packages
 ```
-pacman -S sway swaylock swayidle wofi wl-clipboard wf-recorder zenity brightnessctl waybar slurp grim xorg-wayland
+pacman -S sway swaylock swayidle jq polkit wofi wl-clipboard wf-recorder zenity brightnessctl waybar slurp grim xorg-wayland
 ```
 ##### Autostart
 ```
