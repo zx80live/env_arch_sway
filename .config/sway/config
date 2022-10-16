@@ -356,5 +356,7 @@ for_window [app_id="(?i)telegramdesktop"]    title_format "<span foreground='#34
 for_window [app_id="(?i)libreoffice-writer"] title_format "<span foreground='#bde5f8'> </span> %title"
 for_window [app_id="(?i)libreoffice-calc"]   title_format "<span foreground='#a3e4d7'> </span> %title"
 for_window [title="(?i)watch_lsblk"]         title_format "<span foreground='green'> </span> %title"
+for_window [instance="(?i)gimp"]             title_format "<span foreground='#ba4a00'> </span> %title"
 
-exec_always ~/bin/autoname-workspaces.py -l ~/temp/ws.log
+# Autoname workspaces
+exec killall -9 autoname-workspaces.py || true && ~/bin/autoname-workspaces.py 

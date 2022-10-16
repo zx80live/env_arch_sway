@@ -23,7 +23,8 @@ WINDOW_ICONS = {
     "libreoffice-calc":  "<span foreground='#a3e4d7'></span>",
     "ranger":            "<span foreground='#61abda'></span>",
     "vim":               "<span foreground='#239b56'></span>",
-    "watch_lsblk":       "<span foreground='green'></span>"
+    "watch_lsblk":       "<span foreground='green'></span>",
+    "gimp":              "<span foreground='#ba4a00'></span>"
 }
 
 
