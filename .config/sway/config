@@ -1,20 +1,3 @@
-### Docs:
-#  - habr.com/ru/post/484378/ 
-### Dependencies:
-# wofi
-# wl-clipboard
-# alacritty
-# swayidle
-# zenity
-# NetworkManager
-# brightnessctl
-#  
-### Idea:
-# export _JAVA_AWT_WM_NONREPARENTING=1 && ./idea.sh
-### Battery:
-# upower -i `upower -e | grep 'BAT'`
-# cat /sys/class/power_supply/BAT0/capacity
-
 set $menu wofi --show=run
 set $ranger $term -e ranger
 input * {
@@ -350,14 +333,13 @@ bindsym $mod+Shift+y exec firefox "youtube.com/results?search_query=$(wl-paste)"
 # pacman -S jq
 bindsym Alt+Tab exec ""
 
-# deprecated
-#swaymsg -t get_tree |
-#         jq -r '.nodes[].nodes[] | if .nodes then [recurse(.nodes[])] else [] end + .floating_nodes  |
-#       .[] | select(.nodes==[]) | ((.id | tostring) + "" + .name)' |
-#         wofi --show dmenu | {
-#           read -r id name
-#           swaymsg "[con_id=$id]" focus
-#       }
+# swaymsg -t get_tree |
+#          jq -r '.nodes[].nodes[] | if .nodes then [recurse(.nodes[])] else [] end + .floating_nodes  |
+#        .[] | select(.nodes==[]) | ((.id | tostring) + "" + .name)' |
+#          wofi --show dmenu | {
+#            read -r id name
+#            swaymsg "[con_id=$id]" focus
+#        }
 
 for_window [title="watch_lsblk"] floating enable; resize set 800 500
 bindsym $mod+Shift+u exec "kitty --title watch_lsblk -e watch lsblk"
@@ -371,5 +353,5 @@ for_window [title="(?i)ranger"]              title_format "<span foreground='#61
 for_window [class="jetbrains-idea-ce"]       title_format "<span foreground='#3498db'> </span> %title"
 for_window [title="(?i)vim"]                 title_format "<span foreground='#239b56'> </span> %title"
 for_window [app_id="(?i)telegramdesktop"]    title_format "<span foreground='#3498db'> </span> %title"
-for_window [app_id="(?i)libreoffice-writer"] title_format "<span foreground='#bde5f8'> </span> %title"
-for_window [app_id="(?i)libreoffice-calc"]   title_format "<span foreground='#a3e4d7'> </span> %title"
+for_window [app_id="(?i)libreoffice-writer"]   title_format "<span foreground='#bde5f8'> </span> %title"
+for_window [app_id="(?i)libreoffice-calc"]     title_format "<span foreground='#a3e4d7'> </span> %title"
