@@ -20,15 +20,27 @@ WINDOW_ICONS = {
     "jetbrains-idea-ce": "<span foreground='#3498db'></span>",
     "telegramdesktop":   "<span foreground='#3498db'></span>",
     "libreoffice-writer":"<span foreground='#bde5f8'></span>",
-    "libreoffice-calc":  "<span foreground='#a3e4d7'></span>"
+    "libreoffice-calc":  "<span foreground='#a3e4d7'></span>",
+    "ranger":            "<span foreground='#61abda'></span>",
+    "vim":               "<span foreground='#239b56'></span>",
+    "watch_lsblk":       "<span foreground='green'></span>"
 }
 
 
 DEFAULT_ICON = "ﬓ"
 
+def match_ico(name):
+    for i in WINDOW_ICONS:
+        if i in name:
+            return i
+    return ""    
 
 def icon_for_window(window):
     name = None
+
+    if window.name is not None and len(window.name) > 0 and len(match_ico(window.name)) > 0:
+        return WINDOW_ICONS[match_ico(window.name)]
+
     if window.app_id is not None and len(window.app_id) > 0:
         name = window.app_id.lower()
     elif window.window_class is not None and len(window.window_class) > 0:
