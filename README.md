@@ -507,8 +507,12 @@ ranger --copy-config=all
 ```
 ```
 ~/.config/ranger/rc.conf
+...
 set preview_images true
 set preview_images_method kitty
+...
+set draw_borders both
+...
 ```
 [[^]](#table-of-contents)
 #### Alacritty
