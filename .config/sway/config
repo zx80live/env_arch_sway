@@ -361,3 +361,13 @@ bindsym Alt+Tab exec ""
 
 for_window [title="watch_lsblk"] floating enable; resize set 800 500
 bindsym $mod+Shift+u exec "kitty --title watch_lsblk -e watch lsblk"
+
+# Font
+font pango:SourceCodePro Medium 12
+# Titlebar icons
+for_window [app_id="(?i)firefox"]          title_format "<span foreground='orange'> </span> %title"
+for_window [app_id="(?i)kitty"]           title_format "<span foreground='#27ae60'> </span> %title"
+for_window [title="(?i)ranger"]           title_format "<span foreground='#61abda'> </span> %title"
+for_window [class="jetbrains-idea-ce"]    title_format "<span foreground='#3498db'> </span> %title"
+for_window [title="(?i)vim"]              title_format "<span foreground='#239b56'> </span> %title"
+for_window [app_id="(?i)telegramdesktop"] title_format "<span foreground='#3498db'> </span> %title"
