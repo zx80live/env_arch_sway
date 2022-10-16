@@ -357,6 +357,7 @@ for_window [app_id="(?i)libreoffice-writer"] title_format "<span foreground='#bd
 for_window [app_id="(?i)libreoffice-calc"]   title_format "<span foreground='#a3e4d7'> </span> %title"
 for_window [title="(?i)watch_lsblk"]         title_format "<span foreground='green'> </span> %title"
 for_window [instance="(?i)gimp"]             title_format "<span foreground='#ba4a00'> </span> %title"
+for_window [app_id="(?i)gedit"]              title_format "<span foreground='#bde5f8'> </span> %title"
 
 # Autoname workspaces
 exec killall -9 autoname-workspaces.py || true && ~/bin/autoname-workspaces.py 

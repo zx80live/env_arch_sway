@@ -24,7 +24,8 @@ WINDOW_ICONS = {
     "ranger":            "<span foreground='#61abda'></span>",
     "vim":               "<span foreground='#239b56'></span>",
     "watch_lsblk":       "<span foreground='green'></span>",
-    "gimp":              "<span foreground='#ba4a00'></span>"
+    "gimp":              "<span foreground='#ba4a00'></span>",
+    "gedit":             "<span foreground='#bde5f8'></span>"
 }
 
 
