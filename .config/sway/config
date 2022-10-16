@@ -257,9 +257,9 @@ include /etc/sway/config.d/*
 ### Screenshots
 # slurp
 # grim
-bindsym Print exec grim ~/Pictures/screen-"$(date +%s)".png
-bindsym $mod+Print exec grim -g "$(slurp)" ~/Pictures/screen-"$(date +%s)".png
-bindsym $mod+Shift+Print exec IMG_FILE=~/Pictures/screen-"$(date +%s).png" && grim -g "$(slurp)" $IMG_FILE && gimp $IMG_FILE
+bindsym Print            exec IMG_FILE=~/Pictures/screen-"$(date +%s).png" && grim $IMG_FILE
+bindsym $mod+Print       exec IMG_FILE=~/Pictures/screen-"$(date +%s).png" && grim -g "$(slurp)" $IMG_FILE
+bindsym $mod+Shift+Print exec IMG_FILE=~/Pictures/screen-"$(date +%s).png" && grim -g "$(slurp)" $IMG_FILE && notify-send "Screenshot:\n $IMG_FILE" && gimp $IMG_FILE
 
 ### Screencasts
 # wf-recorder
@@ -353,5 +353,6 @@ for_window [title="(?i)ranger"]              title_format "<span foreground='#61
 for_window [class="jetbrains-idea-ce"]       title_format "<span foreground='#3498db'> </span> %title"
 for_window [title="(?i)vim"]                 title_format "<span foreground='#239b56'> </span> %title"
 for_window [app_id="(?i)telegramdesktop"]    title_format "<span foreground='#3498db'> </span> %title"
-for_window [app_id="(?i)libreoffice-writer"]   title_format "<span foreground='#bde5f8'> </span> %title"
-for_window [app_id="(?i)libreoffice-calc"]     title_format "<span foreground='#a3e4d7'> </span> %title"
+for_window [app_id="(?i)libreoffice-writer"] title_format "<span foreground='#bde5f8'> </span> %title"
+for_window [app_id="(?i)libreoffice-calc"]   title_format "<span foreground='#a3e4d7'> </span> %title"
+for_window [title="(?i)watch_lsblk"]         title_format "<span foreground='green'> </span> %title"
