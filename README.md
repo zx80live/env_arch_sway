@@ -496,6 +496,7 @@ confirm_os_window_close 0
 ```
 ```
 kitty +kitten themes
+zenwritten_dark
 ```
 [[^]](#table-of-contents)
 #### Ranger
