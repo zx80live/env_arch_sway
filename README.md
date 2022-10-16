@@ -53,6 +53,7 @@ Guide to setup environment based on Arch Linux and Swaywm for particular hardwar
       * [Ranger](#ranger)
       * [Alacritty](#alacritty)
       * [Powerlevel10k](#powerlevel10k)
+   * [Notifications](#notifications)
    * [Firefox](#firefox)
    * [Intellij IDEA](#intellij-idea)
    * [Media](#media)
@@ -542,6 +543,16 @@ autoload -Uz compinit
 compinit
 zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
+```
+[[^]](#table-of-contents)
+
+### Notifications
+```
+pacman -S mako notify-send
+```
+```
+notify-send "Hello"
+notify-send "$(ls)"
 ```
 [[^]](#table-of-contents)
 ### Firefox
