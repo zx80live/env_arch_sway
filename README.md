@@ -451,7 +451,7 @@ echo "alias vim=nvim" >> ~/.zshenv
 ## Install Swaywm
 ##### Packages
 ```
-pacman -S sway swaybg swaylock swayidle jq polkit wofi wl-clipboard wf-recorder zenity brightnessctl waybar slurp grim xorg-wayland
+pacman -S sway swaybg swaylock swayidle jq polkit wofi wl-clipboard wf-recorder zenity brightnessctl waybar slurp grim pango xorg-wayland
 ```
 ##### Autostart
 ```
