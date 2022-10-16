@@ -1,7 +1,6 @@
 # env_arch_sway
 Guide to setup environment based on Arch Linux and Swaywm for particular hardware config (see Hardware section).
 
-
 ## Table of contents
 * [Hardware](#hardware)
 * [Install Arch](#install-arch)
