@@ -259,7 +259,7 @@ include /etc/sway/config.d/*
 # grim
 bindsym Print            exec IMG_FILE=~/Pictures/screen-"$(date +%s).png" && grim $IMG_FILE
 bindsym $mod+Print       exec IMG_FILE=~/Pictures/screen-"$(date +%s).png" && grim -g "$(slurp)" $IMG_FILE
-bindsym $mod+Shift+Print exec IMG_FILE=~/Pictures/screen-"$(date +%s).png" && grim -g "$(slurp)" $IMG_FILE && notify-send "Screenshot:\n $IMG_FILE" && gimp $IMG_FILE
+bindsym $mod+Shift+Print exec IMG_FILE=~/Pictures/screen-"$(date +%s).png" && grim -g "$(slurp)" $IMG_FILE && gimp $IMG_FILE  
 
 ### Screencasts
 # wf-recorder
@@ -322,7 +322,7 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 xwayland enable
 
-assign [instance="gimp"]  → "gimp"
+#assign [instance="gimp"]  → "gimp"
 
 bindsym $mod+Shift+BackSpace exec "$(if zenity --question --text 'Power off'; then systemctl poweroff; fi)"
 
@@ -356,3 +356,5 @@ for_window [app_id="(?i)telegramdesktop"]    title_format "<span foreground='#34
 for_window [app_id="(?i)libreoffice-writer"] title_format "<span foreground='#bde5f8'> </span> %title"
 for_window [app_id="(?i)libreoffice-calc"]   title_format "<span foreground='#a3e4d7'> </span> %title"
 for_window [title="(?i)watch_lsblk"]         title_format "<span foreground='green'> </span> %title"
+
+exec_always ~/bin/autoname-workspaces.py -l ~/temp/ws.log

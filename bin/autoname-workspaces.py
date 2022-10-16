@@ -78,15 +78,22 @@ def undo_window_renaming(ipc):
 
 
 def parse_workspace_name(name):
-    return re.match(
-        "(?P<num>[0-9]+):?(?P<shortname>\w+)? ?(?P<icons>.+)?", name
-    ).groupdict()
+    m = re.match("(?P<num>[0-9]+):*?(?P<shortname>\w+)? ?(?P<icons>.+)?", name)
+    if m is not None:
+        return m.groupdict()
+    else:
+        return {'num': None, 'shortname': name, 'icons': None}
 
 
 def construct_workspace_name(parts):
-    new_name = str(parts["num"])
+    if parts["num"] is not None:
+       new_name = str(parts["num"])
+    else:
+       new_name = "" 
+
     if parts["shortname"] or parts["icons"]:
-        new_name += ":"
+        if len(new_name) > 0: 
+            new_name += ":"
 
         if parts["shortname"]:
             new_name += parts["shortname"]
