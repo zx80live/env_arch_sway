@@ -365,7 +365,7 @@ bindsym $mod+Shift+u exec "kitty --title watch_lsblk -e watch lsblk"
 # Font
 font pango:SourceCodePro Medium 12
 # Titlebar icons
-for_window [app_id="(?i)firefox"]          title_format "<span foreground='orange'> </span> %title"
+for_window [app_id="(?i)firefox"]          title_format "<span foreground='#f39c12'> </span> %title"
 for_window [app_id="(?i)kitty"]           title_format "<span foreground='#27ae60'> </span> %title"
 for_window [title="(?i)ranger"]           title_format "<span foreground='#61abda'> </span> %title"
 for_window [class="jetbrains-idea-ce"]    title_format "<span foreground='#3498db'> </span> %title"
