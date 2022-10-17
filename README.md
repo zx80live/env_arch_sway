@@ -42,15 +42,17 @@ Guide to setup environment based on Arch Linux and Swaywm for particular hardwar
    * [Connect to WiFi](#connect-to-wifi)
    * [Firewall](#firewall)
    * [AUR helper](#aur-helper)
-   * [nvim](#nvim)
+   * [Paths](#paths)
 * [Install Swaywm](#install-swaywm)
    * [Packages](#packages)
    * [Autostart](#autostart)
    * [Fonts](#fonts)
    * [Terminal](#terminal)
+      * [Zsh](#zsh)
       * [Kitty](#kitty)
       * [Ranger](#ranger)
       * [Alacritty](#alacritty)
+      * [Lf](#lf)
       * [Powerlevel10k](#powerlevel10k)
    * [Notifications](#notifications)
    * [Firefox](#firefox)
@@ -61,6 +63,8 @@ Guide to setup environment based on Arch Linux and Swaywm for particular hardwar
       * [XMPP](#xmpp)
       * [Telegram](#telegram)
       * [Zoom](#zoom)
+   * [Qt](#qt)
+   * [Dark theme](#dark-theme)
 * [Utils](#utils)
    * [Services](#services)
       * [Show errors](#show-errors)
@@ -78,6 +82,7 @@ Guide to setup environment based on Arch Linux and Swaywm for particular hardwar
       * [Mount NTFS](#mount-ntfs)
    * [Analyze systemd](#analyze-systemd)
 * [Issues](#issues)
+   * [Wifi disconnecting](#wifi-disconnecting)
 * [Dev](#dev)
    * [Neovim](#neovim)
    * [C++](#c)
@@ -431,20 +436,9 @@ yay -Syy
 ```
 [[^]](#table-of-contents)
 
-#### nvim
+#### Paths
 ```
-pacman -S neovim
-```
-```
-yay -S nvim-packer-git
-```
-```
-nvim
-:PackerInstall
-:q
-```
-```
-echo "alias vim=nvim" >> ~/.zshenv
+echo "export PATH=$PATH:~/bin" >> ~/.zshenv
 ```
 [[^]](#table-of-contents)
 
@@ -479,6 +473,31 @@ pacman -S wdisplays
 [[^]](#table-of-contents)
 
 ### Terminal
+#### Zsh
+```
+~/.zshrc
+...
+
+# Dynamic title
+autoload -Uz add-zsh-hook
+
+function xterm_title_precmd () {
+	#print -Pn -- '\e]2;%n@%m %~\a'
+	print -Pn -- '\e]2; %~\a'
+	[[ "$TERM" == 'screen'* ]] && print -Pn -- '\e_\005{g}%n\005{-}@\005{m}%m\005{-} \005{B}%~\005{-}\e\\'
+}
+
+function xterm_title_preexec () {
+	#print -Pn -- '\e]2;%n@%m %~ %# ' && print -n -- "${(q)1}\a"
+	print -Pn -- '\e]2;' && print -n -- "${(q)1}\a"
+	[[ "$TERM" == 'screen'* ]] && { print -Pn -- '\e_\005{g}%n\005{-}@\005{m}%m\005{-} \005{B}%~\005{-} %# ' && print -n -- "${(q)1}\e\\"; }
+}
+
+if [[ "$TERM" == (Eterm*|alacritty*|aterm*|gnome*|konsole*|kterm*|putty*|rxvt*|screen*|tmux*|xterm*) ]]; then
+	add-zsh-hook -Uz precmd xterm_title_precmd
+	add-zsh-hook -Uz preexec xterm_title_preexec
+fi
+```
 #### Kitty
 ```
 pacman -S kitty
@@ -525,6 +544,18 @@ mkdir ~/.config/alacritty
 cp /usr/share/doc/alacritty/example/alacritty.yml ~/.config/alacritty/alacritty.yml
 ```
 [[^]](#table-of-contents)
+
+#### Lf
+```
+pacman -S lf viu
+```
+```
+mkdir ~/.config/lf
+cp /usr/share/doc/lf/lfrc.example ~/.config/lf/lfrc
+```
+[[^]](#table-of-contents)
+
+
 #### Powerlevel10k
 ```
 yay -S --noconfirm zsh-theme-powerlevel10k-git
@@ -607,6 +638,24 @@ env -u XDG_SESSION_TYPE QT_QPA_PLATFORM=wayland-egl zoom
 ```
 [[^]](#table-of-contents)
 
+### Qt
+```
+pacman -S qt5-wayland
+```
+```
+echo "export QT_QPA_PLATFORM=wayland" >> ~/.zshenv
+```
+[[^]](#table-of-contents)
+
+### Dark theme
+```
+~/.config/gtk-3.0/settings.ini
+...
+[Settings]
+gtk-application-prefer-dark-theme=1
+```
+[[^]](#table-of-contents)
+
 ## Utils
 ### Services
 ##### Show errors
@@ -678,10 +727,11 @@ sudo modprobe psmouse
 printenv
 ```
 [[^]](#table-of-contents)
+
 ##### Printer (Brother)
 ```
-yay -S brother-dcpl2550dw
-pacman -S cups cups-filters avahi system-config-printer
+yay -S brother-dcpl2550dw brscan4
+pacman -S cups cups-filters avahi system-config-printer simple-scan
 ```
 ```
 systemctl disable systemd-resolved.service
@@ -690,9 +740,17 @@ systemctl enable cups
 ```
 ```
 sudo ufw allow 5353/udp
+reboot
 ```
 ```
-# browse network devices including wi-fi printers (will be availabled after reboot)
+http://localhost:631/
+```
+```
+pacman -S sane-airscan
+airscan-discover
+```
+```
+#browse network devices including wi-fi printers (will be availabled after reboot)
 avahi-browse --all --ignore-local --resolve --terminate
 ```
 [[^]](#table-of-contents)
@@ -718,7 +776,39 @@ systemd-analyze blame
 ## Issues
 https://github.com/keybase/client/issues/19614
 [[^]](#table-of-contents)
+
+### Wifi disconnecting
+[Archlinux: power management](https://wiki.archlinux.org/title/Power_management#Network_interfaces)
+
+If journal contains the following messages:
+```
+journalctl | grep "deauthenticating"
+...
+kernel: wlpxxxx: deauthenticating from xx:xx:xx:xx:xx:xx by local choice (Reason: 3=DEAUTH_LEAVING)
+...
+```
+Then disable power saving for wifi:
+```
+sudo vim /etc/udev/rules.d/81-wifi-powersave.rules
+...
+ACTION=="add", SUBSYSTEM=="net", KERNEL=="wl*", RUN+="/usr/bin/iw dev $name set power_save off"
+```
+[[^]](#table-of-contents)
+
 ## Dev
+### Git
+```
+~/.gitconfig
+...
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  h = log --decorate --color=always --pretty=format:\"%C(auto,blue)%h%C(auto,reset) %C("#666666")%ai%C(reset) %C(auto,green)%an%C(auto,reset) | %C(auto)%s%d%C(reset)\" --graph
+  type = cat-file -t
+  dump = cat-file -p
+```
 ### Neovim
 ```
 pacman -S nvim python-pynvim

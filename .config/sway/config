@@ -1,5 +1,5 @@
 set $menu wofi --show=run
-set $ranger $term -e ranger
+set $filemanager $term -e lf
 input * {
     xkb_layout us,ru
     xkb_options grp:shifts_toggle
@@ -22,7 +22,7 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 #set $term alacritty
-set $term kitty
+set $term alacritty
 set $place kitty -o "background #000000"
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -77,7 +77,7 @@ exec swayidle -w \
     # Start a terminal
     bindsym $mod+Return exec $term
     bindsym $mod+Shift+Return exec $place
-    bindsym $mod+Shift+r exec $ranger
+    bindsym $mod+Shift+r exec $filemanager
 
     # Kill focused window
     bindsym --to-code $mod+Shift+q kill
@@ -343,21 +343,9 @@ bindsym Alt+Tab exec ""
 
 for_window [title="watch_lsblk"] floating enable; resize set 800 500
 bindsym $mod+Shift+u exec "kitty --title watch_lsblk -e watch lsblk"
+bindsym $mod+Shift+p exec "firefox --private-window about:blank"
 
-# Font
+# Sway dynamic icons
 font pango:SourceCodePro Medium 12
-# Titlebar icons
-for_window [app_id="(?i)firefox"]            title_format "<span foreground='#f39c12'> </span> %title"
-for_window [app_id="(?i)kitty"]              title_format "<span foreground='#27ae60'> </span> %title"
-for_window [title="(?i)ranger"]              title_format "<span foreground='#61abda'> </span> %title"
-for_window [class="jetbrains-idea-ce"]       title_format "<span foreground='#3498db'> </span> %title"
-for_window [title="(?i)vim"]                 title_format "<span foreground='#239b56'> </span> %title"
-for_window [app_id="(?i)telegramdesktop"]    title_format "<span foreground='#3498db'> </span> %title"
-for_window [app_id="(?i)libreoffice-writer"] title_format "<span foreground='#bde5f8'> </span> %title"
-for_window [app_id="(?i)libreoffice-calc"]   title_format "<span foreground='#a3e4d7'> </span> %title"
-for_window [title="(?i)watch_lsblk"]         title_format "<span foreground='green'> </span> %title"
-for_window [instance="(?i)gimp"]             title_format "<span foreground='#ba4a00'> </span> %title"
-for_window [app_id="(?i)gedit"]              title_format "<span foreground='#bde5f8'> </span> %title"
-
-# Autoname workspaces
-exec killall -9 autoname-workspaces.py || true && ~/bin/autoname-workspaces.py 
+exec killall -9 sway-dynamic-icons.py || true && ~/bin/sway-dynamic-icons.py 
+show_marks no

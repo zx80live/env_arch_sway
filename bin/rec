@@ -1,0 +1,9 @@
+#! /usr/bin/env sh
+
+echo "recovering mouse.."
+sudo modprobe -r psmouse
+sudo modprobe psmouse
+
+echo "recovering wifi.."
+sudo rfkill unblock wlan
+

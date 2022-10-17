@@ -11,7 +11,7 @@
 
     "sway/window": {
         "format": "{}",
-        "max-length": 170,
+        "max-length": 80,
         "rewrite": {
            "(.*)": "$1",
            "vim(.*)": " $1",
@@ -57,7 +57,7 @@
     },
 
     "custom/clock": {
-        "exec": "date +'%d %b %H:%M:%S'",
+        "exec": "date +'%a %d %b %H:%M:%S'",
         "interval":1,
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "on-click": "zenity --calendar"

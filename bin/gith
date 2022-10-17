@@ -1,0 +1,3 @@
+#! /usr/bin/env sh
+
+git h | nl | less -r
