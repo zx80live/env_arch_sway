@@ -6,7 +6,8 @@
     "padding": 0,
 
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
+    //"modules-center": ["sway/window"],
+    "modules-center": [],
     "modules-right": ["pulseaudio", "network", "custom/usb", "battery", "tray", "sway/language", "custom/clock", "custom/power"],
 
     "sway/window": {
