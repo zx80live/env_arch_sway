@@ -121,4 +121,6 @@ map @ push :open-with<space>
 
 # keys
 map <backspace2> set hidden!
+map <f-8> delete $f
+map <delete> delete $f
 
