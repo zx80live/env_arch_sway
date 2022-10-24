@@ -53,6 +53,7 @@ Guide to setup environment based on Arch Linux and Swaywm for particular hardwar
       * [Ranger](#ranger)
       * [Alacritty](#alacritty)
       * [Lf](#lf)
+      * [Markdown](#markdown)
       * [Powerlevel10k](#powerlevel10k)
    * [Notifications](#notifications)
    * [Firefox](#firefox)
@@ -555,6 +556,11 @@ cp /usr/share/doc/lf/lfrc.example ~/.config/lf/lfrc
 ```
 [[^]](#table-of-contents)
 
+#### Markdown
+```
+pacman -S glow
+```
+[[^]](#table-of-contents)
 
 #### Powerlevel10k
 ```
