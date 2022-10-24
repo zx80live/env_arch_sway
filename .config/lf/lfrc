@@ -118,3 +118,7 @@ cmd open-with ${{
 }}
 map ` push :open-with<space>
 map @ push :open-with<space>
+
+# keys
+map <backspace2> set hidden!
+
