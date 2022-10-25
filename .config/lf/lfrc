@@ -124,9 +124,16 @@ map <backspace2> set hidden!
 
 map <f-8> delete $f
 map <delete> delete $f
-map <f-7> push %mkdir<space>
+
+cmd mkdir %{{
+    IFS=" "
+    mkdir -p -- "$*"
+    lf -remote "send $id select \"$*\""
+}}
+map <f-7> push :mkdir<space>
 
 cmd touch ${{
   touch $@
   nvim $@
+  lf -remote "send $id select \"$*\""
 }}
