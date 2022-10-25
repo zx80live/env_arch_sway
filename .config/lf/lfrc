@@ -129,3 +129,7 @@ cmd mkdir ${{
   mkdir $@
 }}
 map <f-7> push :mkdir<space>
+
+cmd touch ${{
+  touch $@
+}}
