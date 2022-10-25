@@ -124,12 +124,9 @@ map <backspace2> set hidden!
 
 map <f-8> delete $f
 map <delete> delete $f
-
-cmd mkdir ${{
-  mkdir $@
-}}
-map <f-7> push :mkdir<space>
+map <f-7> push %mkdir<space>
 
 cmd touch ${{
   touch $@
+  nvim $@
 }}
