@@ -349,3 +349,9 @@ bindsym $mod+Shift+p exec "firefox --private-window about:blank"
 font pango:SourceCodePro Medium 12
 exec killall -9 sway-dynamic-icons.py || true && ~/bin/sway-dynamic-icons.py 
 show_marks no
+
+# worklogs
+for_window [title="create-task"] floating enable
+for_window [title="create-activity"] floating enable
+bindsym $mod+Shift+t exec "alacritty --title create-task -e ~/work/worklogs/do_create_task.py"
+bindsym $mod+Shift+a exec "alacritty --title create-activity -e ~/work/worklogs/do_create_activity.py"
