@@ -1,5 +1,5 @@
 set $menu wofi --show=run
-set $filemanager $term -e lf
+set $filemanager $term -e ranger
 input * {
     xkb_layout us,ru
     xkb_options grp:shifts_toggle
@@ -22,7 +22,7 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 #set $term alacritty
-set $term alacritty
+set $term kitty
 set $place kitty -o "background #000000"
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
