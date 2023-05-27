@@ -394,6 +394,13 @@ reboot
 ```
 [[^]](#table-of-contents)
 ## System configuration
+#### Post install configuration
+```
+sudo timedatectl set-ntp true
+localectl set-locale en_US.UTF-8
+sudo systemctl start fstrim.timer
+```
+
 #### Connect to WiFi
 ```
 nmcli device status
