@@ -176,7 +176,7 @@ sudo reflector --verbose --country '<Country>' -l 25 --sort rate --save /etc/pac
 [[^]](#table-of-contents)
 ### Install base packages
 ```
-pacstrap /mnt base base-devel [linux] [linux-headers] linux-lts linux-lts-headers linux-firmware intel-ucode
+pacstrap -K /mnt base [linux] linux-lts linux-firmware 
 ```
 ```
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -190,6 +190,7 @@ arch-chroot /mnt
 #### Install common packages
 ```
 pacman -Syu
+pacman -S base-devel [linux-headers] linux-lts-headers intel-ucode
 pacman -S neovim dhcpcd networkmanager network-manager-applet nm-connection-editor sudo zsh zsh-completions hdparm util-linux rsync wget curl git htop bpytop make ranger reflector
 ```
 ```
