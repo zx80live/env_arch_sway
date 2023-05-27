@@ -239,15 +239,12 @@ ln -sf /usr/share/zoneinfo/<Region>/<City> /etc/localtime
 ```
 hwclock --systohc
 ```
-```
-sudo timedatectl set-ntp true 
-```
+
 [[^]](#table-of-contents)
 #### Locale
 ```
 vim /etc/locale.gen
 locale-gen
-localectl set-locale en_US.UTF-8
 ```
 [[^]](#table-of-contents)
 #### Network
@@ -307,7 +304,6 @@ Use one of **periodical** (recommended) or **continuous** TRIM
 ##### SSD trim (periodical)
 ```
 sudo systemctl enable fstrim.timer
-sudo systemctl start fstrim.timer
 ```
 [[^]](#table-of-contents)
 ##### SSD trim (continuous)
@@ -331,8 +327,6 @@ sysctl vm.swappiness    # default=60
 ```
 /etc/sysctl.d/99-swappiness.conf
 vm.swappiness=10
-
-sudo reboot
 ```
 [[^]](#table-of-contents)
 ##### Ext4 tuning
