@@ -608,6 +608,9 @@ set font: san scherif
 [[^]](#table-of-contents)
 ### Intellij IDEA
 ```
+pacman -S qt5-wayland qt6-wayland gtk3 gtk4
+```
+```
 echo "export _JAVA_AWT_WM_NONREPARENTING=1" >> ~/.zshenv
 ```
 ```
