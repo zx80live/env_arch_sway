@@ -75,6 +75,7 @@ Guide to setup environment based on Arch Linux and Swaywm for particular hardwar
       * [Restore EFI entries](#restore-efi-entries)
    * [Backup](#backup)
 * [HowTo](#howto)
+   * [fix mount ntfs error]
    * [Restart touchpad/trackpoint](#restart-touchpadtrackpoint)
    * [Print environment variables](#print-environment-variables)
    * [Printer (Brother)](#printer-brother)
@@ -764,6 +765,21 @@ airscan-discover
 #browse network devices including wi-fi printers (will be availabled after reboot)
 avahi-browse --all --ignore-local --resolve --terminate
 ```
+##### Fix mount ntfs error
+```
+❯ sudo mount -t ntfs3 /dev/sda1 /mnt/usb
+mount: /mnt/usb: mount(2) system call failed: No such file or directory.
+       dmesg(1) may have more information after failed mount system call.
+```
+Solution:
+```
+pacman -S ntfs-3g
+```
+```
+sudo ntfsfix /dev/sda1
+sudo mount /dev/sda1 /mnt/usb
+```
+
 [[^]](#table-of-contents)
 ### Pacman
 ##### Remove orphans
