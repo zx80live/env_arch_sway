@@ -449,7 +449,7 @@ echo "export PATH=$PATH:~/bin" >> ~/.zshenv
 ## Install Swaywm
 ##### Packages
 ```
-pacman -S sway swaybg swaylock swayidle jq polkit wofi wl-clipboard wf-recorder zenity brightnessctl waybar slurp grim pango xorg-wayland
+pacman -S sway swaybg swaylock swayidle jq polkit wofi wl-clipboard wf-recorder zenity brightnessctl waybar slurp grim pango xorg-wayland python-i3ipc
 ```
 ##### Autostart
 ```
