@@ -1,16 +1,26 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 16,
+    "height": 10,
     "margin": 0,
     "padding": 0,
 
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    //"modules-center": ["sway/window"],
-    "modules-center": [],
-    "modules-right": ["pulseaudio", "network", "custom/usb", "battery", "tray", "sway/language", "custom/clock", "custom/power"],
+    "modules-left": ["niri/workspaces", "niri/window"],
+    "modules-center": ["custom/clock"],
+    "modules-right": ["custom/temp", "custom/brightness", "pulseaudio", "custom/netmon", "network", "custom/usb", "battery", "tray", "niri/language", "custom/power"],
 
-    "sway/window": {
+    "niri/workspaces": {
+        "all-outputs": false,         // if true - show workspaces from all monitors
+        "disable-scroll": true,
+        "format": "{index} {icon}",
+        "format-icons": {
+            //"urgent": "",
+            //"focused": "",
+            "default": ""
+        }
+    },
+
+    "niri/window": {
         "format": "{}",
         "max-length": 80,
         "rewrite": {
@@ -20,14 +30,45 @@
            "ranger(.*)": "   ranger"
         }
     },
-    "sway/taskbar": {
-        "format": ""
+    "niri/language": {
+        "format" : "{short}"
+    },
+    //"niri/taskbar": {
+    //    "format": ""
+    //},    
 
-    },    
+    "custom/temp": {
+        "exec": "cat /tmp/wlsunset_label 2>/dev/null || echo '🖥️ 5000K'",
+        "interval": 1,
+        "on-click": "~/.config/waybar/temp_cycle.sh",
+        "tooltip": "Переключить температуру (5000K / 4500K / 6500K)"
+    },
+
+    "custom/brightness": {
+        "exec": "cat /tmp/lg_brightness_label 2>/dev/null || echo '   50%'",
+        "interval": 1,
+        "on-click": "~/.config/waybar/brightness_cycle.sh",
+        "tooltip": "Яркость монитора LG"
+    },
+
+
+    "custom/netmon": {
+      "format": "{icon}",
+      "format-icons": ["󱫋"],
+      "on-click": "alacritty -t network_monitor -e bmon"
+    },
+
+    "custom/netmon": {
+      "format": "{icon}",
+      "format-icons": ["󱫋"],
+      "on-click": "alacritty -t network_monitor -e bmon"
+    },
+    
     "custom/usb": {
       "format": "{icon}",
       "format-icons": [""],
-      "on-click": "kitty --title watch_lsblk -e watch lsblk"
+      //"on-click": "kitty --title watch_lsblk -e watch lsblk"
+      "on-click": "alacritty -t watch_lsblk -e watch lsblk"
     },
     "custom/logo": {
       "format": "{icon}",
@@ -60,7 +101,7 @@
     "custom/clock": {
         "exec": "date +'%a %d %b %H:%M:%S'",
         "interval":1,
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        //"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "on-click": "zenity --calendar"
     },
     "tray": {
@@ -75,7 +116,7 @@
         "format-bluetooth-muted": "{icon} {format_source}",
         "format-muted": "  {format_source}",
         "format-source": " {volume}%",
-        "format-source-muted": "",
+        "format-source-muted": " ",
         "format-icons": {
             "headphone": "",
             "hands-free": "",

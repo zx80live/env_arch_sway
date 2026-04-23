@@ -1,0 +1,4 @@
+#!/bin/sh
+active_workspace="$(niri msg -j workspaces | jq ".[] | select(.is_focused == true) | .id")"
+filtered_windows="$(niri msg -j windows | jq ".[] | select(.workspace_id == $active_workspace)")"
+echo "$filtered_windows"

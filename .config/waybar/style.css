@@ -3,7 +3,7 @@
     /*font-family: Roboto, Helvetica, Arial, sans-serif;*/
     /*font-family: "MesloLGS NF";*/
     font-family: "TerminessTTF Nerd Font";
-    font-size: 18px;
+    font-size: 16px;
     min-height: 0;
     /*margin-top: -1px;*/
     /*margin-bottom: -1px;*/
@@ -271,5 +271,41 @@ label:focus {
   font-size: 28px;     
 /*  margin-top: -28px;   */ 
 /*  margin-bottom: -28px;*/ 
+}
+
+#custom-netmon {
+  margin-right: 10px;	
+}
+
+
+#custom-obsidian {
+  border-right: solid 1px #2e2e2e;
+  padding-right: 15px;
+  margin-right: 5px;
+}
+#custom-obsidian:hover {
+  color: mediumpurple;
+}
+
+#custom-temp {
+    border-right: solid 1px #2e2e2e;
+    margin-right: 5px;
+    padding-right: 10px;
+    padding-left: 5px;
+    /* Оранжевый акцент, чтобы кнопка выделялась как "теплая" */
+    color: #fab387;
+}
+
+#custom-temp:hover {
+    color: white;
+    background-color: #3b4754;
+}
+
+#custom-brightness {
+    border-right: solid 1px #2e2e2e;
+    margin-right: 5px;
+    padding-right: 10px;
+    padding-left: 5px;
+    color: #f9e2af; /* Желтый цвет для иконки солнца */
 }
 

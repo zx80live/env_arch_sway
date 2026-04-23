@@ -3,6 +3,10 @@
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
+environment {
+	DISPLAY ":0"
+}
+
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
@@ -94,11 +98,19 @@ input {
     // automatically.
     position x=1280 y=0
 }
-output "DP-1" {
+//output "DP-1" {
+//  off	
+//  mode "3840x2160@60.0"
+//  scale 1
+//  position x=0 y=0
+//}
+
+output "DP-3" {
   mode "3840x2160@60.0"
   scale 1
   position x=0 y=0
 }
+
 
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
@@ -153,7 +165,7 @@ layout {
         // off
 
         // How many logical pixels the ring extends out from the windows.
-        width 3
+        width 2
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -162,7 +174,8 @@ layout {
 
         // Color of the ring on the active monitor.
         //active-color "#7fc8ff"
-        active-color "lime"
+	//active-color "orange"
+	active-color "lime"
         //active-color "cyan"
         //active-color "orange"
 
@@ -218,7 +231,15 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 // spawn-at-startup "alacritty" "-e" "fish"
-spawn-at-startup "xwayland-satellite"
+//spawn-at-startup "xwayland-satellite"
+spawn-at-startup "~/work/xwayland-satellite/target/debug/xwayland-satellite"
+spawn-at-startup "export DISPLAY=:0"
+spawn-at-startup "~/work/Waybar/build/waybar"
+spawn-at-startup "swaybg -i ~/Downloads/wallpaper2.jpg"
+spawn-at-startup "nm-applet"
+
+// use systemctl https://github.com/YaLTeR/niri/wiki/Example-systemd-Setup
+//spawn-at-startup "exec swayidle timeout 5 'swaylock --color=#000000'"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -258,6 +279,8 @@ window-rule {
     // You can get away with just app-id="wezterm" if you want.
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
+    geometry-corner-radius 12
+    clip-to-geometry true
 }
 
 // Open the Firefox picture-in-picture player as floating by default.
@@ -268,6 +291,28 @@ window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
 }
+
+// {{ custom
+window-rule {
+    match app-id=r#"jetbrains-idea"# title="\\s*"
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"pavucontrol"# title="\\s*"
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"Alacritty"# title="wf-recorder"
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"Alacritty"# title="wf-recorder-ui"
+    open-floating true
+}
+// }}
 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
@@ -304,9 +349,10 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return { spawn "alacritty"; }
+    //Mod+Return { spawn "alacritty"; }
+    Mod+Return { spawn "gnome-terminal"; }
     Mod+D { spawn "fuzzel"; }
-    Super+Alt+L { spawn "swaylock"; }
+    Super+Alt+L { spawn "swaylock" "--color=#000000"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -444,15 +490,15 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
-    Mod+Ctrl+1 { move-column-to-workspace 1; }
-    Mod+Ctrl+2 { move-column-to-workspace 2; }
-    Mod+Ctrl+3 { move-column-to-workspace 3; }
-    Mod+Ctrl+4 { move-column-to-workspace 4; }
-    Mod+Ctrl+5 { move-column-to-workspace 5; }
-    Mod+Ctrl+6 { move-column-to-workspace 6; }
-    Mod+Ctrl+7 { move-column-to-workspace 7; }
-    Mod+Ctrl+8 { move-column-to-workspace 8; }
-    Mod+Ctrl+9 { move-column-to-workspace 9; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
@@ -505,9 +551,13 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
+    //Print { screenshot; }
+    Print { spawn "script" "--command" "grim -g \"$(slurp)\" - | swappy -f -" "/dev/null"; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
+
+    //Mod+Print { spawn "script" "--command" "TS=\"record-$(date +%Y-%m-%d-%H%M%S).mp4\" alacritty -t wf-recorder -e wf-recorder -g \"$(slurp)\" --audio --file=./Videos/$TS"; }
+    Mod+Print { spawn "script" "--command" "TS=\"record-$(date +%Y-%m-%d-%H%M%S).mp4\" alacritty -t wf-recorder -e wf-recorder -g \"$(slurp)\" --audio=Combined.monitor --file=./Videos/record-$(date +%Y-%m-%d-%H%M%S).mp4"; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
