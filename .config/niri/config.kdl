@@ -5,6 +5,8 @@
 
 environment {
 	DISPLAY ":0"
+        GTK_THEME "Adwaita:dark"
+        ADW_DISABLE_PORTAL "1"
 }
 
 // Input device configuration.
@@ -105,7 +107,7 @@ input {
 //  position x=0 y=0
 //}
 
-output "DP-3" {
+output "DP-2" {
   mode "3840x2160@60.0"
   scale 1
   position x=0 y=0
@@ -234,7 +236,7 @@ layout {
 //spawn-at-startup "xwayland-satellite"
 spawn-at-startup "~/work/xwayland-satellite/target/debug/xwayland-satellite"
 spawn-at-startup "export DISPLAY=:0"
-spawn-at-startup "~/work/Waybar/build/waybar"
+spawn-at-startup "waybar"
 spawn-at-startup "swaybg -i ~/Downloads/wallpaper2.jpg"
 spawn-at-startup "nm-applet"
 
@@ -350,7 +352,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     //Mod+Return { spawn "alacritty"; }
-    Mod+Return { spawn "gnome-terminal"; }
+    Mod+Return { spawn "ghostty"; }
     Mod+D { spawn "fuzzel"; }
     Super+Alt+L { spawn "swaylock" "--color=#000000"; }
 
