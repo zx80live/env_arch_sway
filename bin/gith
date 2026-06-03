@@ -1,3 +1,3 @@
-#! /usr/bin/env sh
+#!/usr/bin/env zsh
+git h --color=always | nl -b a
 
-git h | nl | less -r
