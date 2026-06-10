@@ -44,6 +44,13 @@ if [ -f "$VSCODE_CONFIG_DIR/whichkey.json" ]; then
     cp "$VSCODE_CONFIG_DIR/whichkey.json" "$BACKUP_DIR/"
     FILES_COPIED="${FILES_COPIED:+$FILES_COPIED, }whichkey.json"
 fi
+
+# ДОБАВЛЕНО: Проверяем наличие директории snippets и то, что она не пустая
+if [ -d "$VSCODE_CONFIG_DIR/snippets" ] && [ "$(ls -A "$VSCODE_CONFIG_DIR/snippets" 2>/dev/null)" ]; then
+    cp -r "$VSCODE_CONFIG_DIR/snippets" "$BACKUP_DIR/"
+    FILES_COPIED="${FILES_COPIED:+$FILES_COPIED, }snippets/"
+fi
+
 print_step "Configuration files copied" "[$FILES_COPIED]"
 
 # 2.2 Export extension list
