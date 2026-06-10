@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+# 1. TARGET DIRECTORY PATH VARIABLE (Default)
+TARGET_DIR="$HOME/temp/vscode-settings"
+
+# VS Code config source directory in Arch Linux
+VSCODE_CONFIG_DIR="$HOME/.config/Code/User"
+
+# Get current timestamp in yyyyMMdd-HHmmss-SSS format
+TIMESTAMP=$(date +"%Y%m%d-%H%M%S-$(date +%N | cut -c1-3)")
+
+# ДОБАВЛЕН ПРЕФИКС: Имя папки и файла архива теперь начинаются с vscode-settings-
+BACKUP_NAME="vscode-settings-$TIMESTAMP"
+BACKUP_DIR="$TARGET_DIR/$BACKUP_NAME"
+ARCHIVE_FILE="$BACKUP_NAME.tar.gz"
+
+# ANSI Color Codes
+G_CHECK="\033[1;32m✔\033[0m"       # Bright Green Checkmark
+D_GREEN="\033[0;34m"                # Dark Green for Step Text
+GRAY="\033[0;90m"                   # Gray for Results/Paths
+RESET="\033[0m"                     # Reset color
+
+# Helper function for intermediate step alignment
+print_step() {
+    local text="$1"
+    local detail="$2"
+    printf "${G_CHECK} ${D_GREEN}%-30s${RESET} ${GRAY}%s${RESET}\n" "$text" "$detail"
+}
+
+# 2.1 Create the target directory silently
+mkdir -p "$BACKUP_DIR"
+
+# 2.2 Copy configuration files
+FILES_COPIED=""
+if [ -f "$VSCODE_CONFIG_DIR/settings.json" ]; then
+    cp "$VSCODE_CONFIG_DIR/settings.json" "$BACKUP_DIR/"
+    FILES_COPIED="settings.json"
+fi
+if [ -f "$VSCODE_CONFIG_DIR/keybindings.json" ]; then
+    cp "$VSCODE_CONFIG_DIR/keybindings.json" "$BACKUP_DIR/"
+    FILES_COPIED="${FILES_COPIED:+$FILES_COPIED, }keybindings.json"
+fi
+if [ -f "$VSCODE_CONFIG_DIR/whichkey.json" ]; then
+    cp "$VSCODE_CONFIG_DIR/whichkey.json" "$BACKUP_DIR/"
+    FILES_COPIED="${FILES_COPIED:+$FILES_COPIED, }whichkey.json"
+fi
+print_step "Configuration files copied" "[$FILES_COPIED]"
+
+# 2.2 Export extension list
+if command -v code &> /dev/null; then
+    code --list-extensions > "$BACKUP_DIR/vscode_extensions.txt"
+    print_step "Extension list exported" "vscode_extensions.txt"
+else
+    echo -e "[-] Warning: 'code' utility not found. Extension list skipped."
+    exit 1
+fi
+
+# Укороченная линия, завершающаяся ровно перед началом колонки деталей (32 символа)
+echo "--------------------------------"
+
+# 2.3 Create tar.gz archive inside the target directory
+cd "$TARGET_DIR" || exit
+tar -czf "$ARCHIVE_FILE" "$BACKUP_NAME"
+
+# Вывод статуса Done и пути на строку ниже
+echo -e "${G_CHECK} ${D_GREEN}Done${RESET}"
+echo -e "  ${GRAY}${TARGET_DIR}/${ARCHIVE_FILE}${RESET}"
