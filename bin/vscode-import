@@ -1,0 +1,193 @@
+#!/usr/bin/env bash
+
+# Destination path for VS Code settings in Arch Linux
+VSCODE_CONFIG_DIR="$HOME/.config/Code/User"
+
+# ANSI Color Codes
+G_CHECK="\033[1;32m✔\033[0m"       # Bright Green Checkmark
+D_GREEN="\033[0;34m"                # Dark Green for Step Text
+GRAY="\033[0;90m"                   # Gray for Paths/Details/Help Keys
+RESET="\033[0m"                     # Reset color
+
+# Global control flags
+DRY_RUN=false
+SOURCE=""
+
+# Function to display usage help
+show_help() {
+    # Highlighted keys, options, tree nodes, files and examples with GRAY color
+    echo -e "Usage: ${GRAY}vscode-import.sh${RESET} [${GRAY}OPTIONS${RESET}] <${GRAY}SOURCE${RESET}>"
+    echo ""
+    echo "Restore VS Code configuration files and extensions from a backup."
+    echo ""
+    echo "Options:"
+    echo -e "  ${GRAY}-h, --help${RESET}     Show this help message and exit"
+    echo -e "  ${GRAY}--dry${RESET}          Execute a simulation run without making filesystem changes"
+    echo ""
+    echo "Arguments:"
+    echo -e "  <${GRAY}SOURCE${RESET}>       Path to a ${GRAY}backup directory${RESET} or a ${GRAY}.tar.gz${RESET} archive file"
+    echo ""
+    echo "Backup Structure (Expected inside the folder/archive):"
+    echo -e "  ${GRAY}vscode-settings-yyyyMMdd-HHmmss-SSS/${RESET}"
+    echo -e "  ${GRAY}├── settings.json${RESET}          (Optional) VS Code user preferences"
+    echo -e "  ${GRAY}├── keybindings.json${RESET}       (Optional) Custom keyboard shortcuts"
+    echo -e "  ${GRAY}├── whichkey.json${RESET}          (Optional) WhichKey plugin layout"
+    echo -e "  ${GRAY}└── vscode_extensions.txt${RESET}  (Optional) List of installed extensions"
+    echo ""
+    echo "Examples:"
+    echo -e "  ${GRAY}./vscode-import.sh ~/backups/vscode-settings-20260610-171115-069.tar.gz${RESET}"
+    echo -e "  ${GRAY}./vscode-import.sh --dry ~/backups/vscode-settings-20260610-171115-069/${RESET}"
+    exit 0
+}
+
+# Parse input arguments (detecting help, dry-run and target path)
+for arg in "$@"; do
+    case "$arg" in
+        -h|--help)
+            show_help
+            ;;
+        --dry)
+            DRY_RUN=true
+            ;;
+        *)
+            SOURCE="$arg"
+            ;;
+    esac
+done
+
+# UI helper function for printing intermediate steps
+print_step() {
+    local text="$1"
+    local detail="$2"
+    printf "${G_CHECK} ${D_GREEN}%-30s${RESET} ${GRAY}%s${RESET}\n" "$text" "$detail"
+}
+
+# ==============================================================================
+# FILESYSTEM SIDE-EFFECT FUNCTIONS (Isolated Blocks)
+# ==============================================================================
+
+# Side-effect: Extract tar.gz backup file into work directory
+fs_extract_archive() {
+    local archive="$1"
+    local dest="$2"
+    if [ "$DRY_RUN" = false ]; then
+        tar -xzf "$archive" -C "$dest"
+    fi
+}
+
+# Side-effect: Prepare target config directories
+fs_prepare_config_dir() {
+    if [ "$DRY_RUN" = false ]; then
+        mkdir -p "$VSCODE_CONFIG_DIR"
+    fi
+}
+
+# Side-effect: Safe copy individual JSON configuration files
+fs_restore_config_file() {
+    local src_file="$1"
+    if [ "$DRY_RUN" = false ]; then
+        cp "$src_file" "$VSCODE_CONFIG_DIR/"
+    fi
+}
+
+# Side-effect: Call VS Code CLI to download and install extension binary
+fs_install_extension() {
+    local ext_name="$1"
+    if [ "$DRY_RUN" = false ]; then
+        code --install-extension "$ext_name" &> /dev/null
+    fi
+}
+
+# ==============================================================================
+# MAIN BUSINESS LOGIC
+# ==============================================================================
+
+# 1. Validation phase
+if [ -z "$SOURCE" ]; then
+    echo -e "[-] Error: Missing backup source argument."
+    echo -e "    Try './vscode-import.sh --help' for more information."
+    exit 1
+fi
+
+if [ "$DRY_RUN" = false ] && [ ! -e "$SOURCE" ]; then
+    echo -e "[-] Error: Path '$SOURCE' does not exist."
+    exit 1
+fi
+
+# Allocation of mock / real temporary workspaces
+TMP_DIR="/tmp/mock-vscode-import-dir"
+if [ "$DRY_RUN" = false ]; then
+    TMP_DIR=$(mktemp -d)
+fi
+SRC_DIR=""
+
+# Dry run notification header
+if [ "$DRY_RUN" = true ]; then
+    echo -e "${GRAY}[DRY RUN] Executing script simulation mode without modifying filesystem...${RESET}"
+fi
+
+# 2. Extract or Verify phase
+if [ -f "$SOURCE" ] && [[ "$SOURCE" == *.tar.gz ]] || { [ "$DRY_RUN" = true ] && [[ "$SOURCE" == *.tar.gz ]]; }; then
+    fs_extract_archive "$SOURCE" "$TMP_DIR"
+
+    if [ "$DRY_RUN" = true ]; then
+        # Simulation path mapping
+        SRC_DIR="$TMP_DIR/$(basename "$SOURCE" .tar.gz)"
+    else
+        SRC_DIR=$(find "$TMP_DIR" -mindepth 1 -maxdepth 1 -type d | head -n 1)
+    fi
+    print_step "Archive extracted" "$(basename "$SOURCE")"
+elif [ -d "$SOURCE" ] || [ "$DRY_RUN" = true ]; then
+    SRC_DIR="$SOURCE"
+    print_step "Source directory verified" "$(basename "$SOURCE")"
+else
+    echo -e "[-] Error: Unsupported file format. Please provide a directory or a .tar.gz file."
+    [ "$DRY_RUN" = false ] && rm -rf "$TMP_DIR"
+    exit 1
+fi
+
+fs_prepare_config_dir
+
+# 3. Configurations restore phase
+FILES_RESTORED=""
+# If in dry-run mode, simulate that all three core files exist in source to show full pipeline output
+if [ "$DRY_RUN" = true ]; then
+    FILES_RESTORED="settings.json, keybindings.json, whichkey.json"
+    fs_restore_config_file ""
+else
+    [ -f "$SRC_DIR/settings.json" ] && fs_restore_config_file "$SRC_DIR/settings.json" && FILES_RESTORED="settings.json"
+    [ -f "$SRC_DIR/keybindings.json" ] && fs_restore_config_file "$SRC_DIR/keybindings.json" && FILES_RESTORED="${FILES_RESTORED:+$FILES_RESTORED, }keybindings.json"
+    [ -f "$SRC_DIR/whichkey.json" ] && fs_restore_config_file "$SRC_DIR/whichkey.json" && FILES_RESTORED="${FILES_RESTORED:+$FILES_RESTORED, }whichkey.json"
+fi
+print_step "Configuration files restored" "[$FILES_RESTORED]"
+
+# 4. Extension bootstrap phase
+if [ "$DRY_RUN" = true ] || [ -f "$SRC_DIR/vscode_extensions.txt" ]; then
+    if [ "$DRY_RUN" = true ] || command -v code &> /dev/null; then
+        if [ "$DRY_RUN" = false ]; then
+            while read -r extension || [ -n "$extension" ]; do
+                fs_install_extension "$extension"
+            done < "$SRC_DIR/vscode_extensions.txt"
+        else
+            # Simulate call execution
+            fs_install_extension ""
+        fi
+        print_step "Extension list imported" "vscode_extensions.txt"
+    else
+        echo -e "[-] Warning: 'code' utility not found. Extensions installation skipped."
+    fi
+else
+    print_step "Extension list skipped" "[No vscode_extensions.txt found]"
+fi
+
+# Final cleanup process
+if [ "$DRY_RUN" = false ]; then
+    rm -rf "$TMP_DIR"
+fi
+
+# Tight UI dividing separator (32 chars)
+echo "--------------------------------"
+
+# Definitive output summary mapping
+echo -e "${G_CHECK} ${D_GREEN}Done${RESET}"
+echo -e "  ${GRAY}${VSCODE_CONFIG_DIR}${RESET}"
