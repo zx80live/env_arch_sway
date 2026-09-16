@@ -1,9 +1,21 @@
-#! /usr/bin/env sh
+#!/bin/bash
 
-echo "recovering mouse.."
-sudo modprobe -r psmouse
-sudo modprobe psmouse
+# Создаем папку для записей, если её нет
+TARGET_DIR="$HOME/Records"
+mkdir -p "$TARGET_DIR"
 
-echo "recovering wifi.."
-sudo rfkill unblock wlan
+# Формируем имя файла с датой и временем
+FILE_NAME="${TARGET_DIR}/$(date +%Y%m%d-%H%M%S).mp3"
 
+echo "🎙️ Запись созвона запущена..."
+echo "🎧 Наушники + Микрофон USB-гарнитуры"
+echo "📂 Файл сохранится в: $FILE_NAME"
+echo "🛑 Для остановки нажмите Ctrl+C"
+echo "----------------------------------------"
+
+# Запуск записи через ffmpeg
+ffmpeg -loglevel warning -hide_banner \
+  -f pulse -i alsa_output.usb-Jieli_Technology_UACDemoV1.0-01.analog-stereo.monitor \
+  -f pulse -i alsa_input.usb-Jieli_Technology_UACDemoV1.0-01.mono-fallback \
+  -filter_complex amix=inputs=2:duration=first \
+  "$FILE_NAME"
